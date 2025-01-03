@@ -123,9 +123,9 @@ body {
 }
 
 .gen-container {
-    width: 100px;
-    height: 100px;
-    perspective: 600px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .log {
