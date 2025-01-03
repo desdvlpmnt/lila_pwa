@@ -3,188 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leela Game</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
-    <title>Игра Лила</title>
-    <!-- Регистрация Service Worker -->
-    <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("service-worker.js").then(() => {
-                console.log("Service Worker Registered");
-            });
-        }
-
-        let deferredPrompt;
-
-        window.addEventListener("beforeinstallprompt", (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            showInstallButton();
-        });
-
-        function showInstallButton() {
-            const installButton = document.createElement("button");
-            installButton.textContent = "Установить приложение";
-            installButton.style = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                z-index: 1000;
-            `;
-            document.body.appendChild(installButton);
-
-            installButton.addEventListener("click", () => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === "accepted") {
-                        console.log("Установка приложения подтверждена");
-                    } else {
-                        console.log("Установка приложения отклонена");
-                    }
-                    deferredPrompt = null;
-                    installButton.remove();
-                });
-            });
-        }
-    </script>
-    <style>
-        :root {
-            --background-color-light: #f4f4f4;
-            --text-color-light: #000;
-            --background-color-dark: #333;
-            --text-color-dark: #fff;
-            --primary-color-light: #007bff;
-            --primary-color-dark: #5a9;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--background-color-light);
-            color: var(--text-color-light);
-        }
-        .board-container {
-            position: relative;
-            width: 90vmin;
-            height: 90vmin;
-            background: url('https://prosvetlenie.com.ua/wp-content/uploads/2023/04/chakras.jpeg') no-repeat center center;
-            background-size: cover;
-            border: 2px solid var(--text-color-light);
-        }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(9, 1fr);
-            grid-template-rows: repeat(8, 1fr);
-            gap: 0;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        .board::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-            background-size: calc(100% / 9) calc(100% / 8);
-            pointer-events: none;
-        }
-        .cell {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 5%;
-            font-size: 1vmin;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 1px 1px 2px #000;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        .cell span {
-            font-size: 1.6vmin;
-        }
-        .player {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 0, 0, 0.5);
-            border-radius: 50%;
-            position: absolute;
-            transform: translate(-50%, -50%);
-        }
-        .controls {
-            margin-top: 10px;
-            text-align: center;
-        }
-        .dice {
-            font-size: 20px;
-            cursor: pointer;
-            padding: 10px 20px;
-            background-color: var(--primary-color-light);
-            color: var(--text-color-light);
-            border: none;
-            border-radius: 5px;
-        }
-        .dice:hover {
-            background-color: #0056b3;
-        }
-        .log {
-            max-width: 90vmin;
-            margin-top: 10px;
-            text-align: left;
-            font-size: 16px;
-            overflow-y: auto;
-            height: 150px;
-            border: 1px solid var(--text-color-dark);
-            padding: 5px;
-            background: var(--background-color-light);
-        }
-        .log-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-        .log-table th, .log-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .log-table th {
-            background-color: var(--primary-color-light);
-            color: var(--text-color-light);
-        }
-        .restart-button {
-            font-size: 16px;
-            padding: 10px 20px;
-            margin-bottom: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .restart-button:hover {
-            background-color: #218838;
-        }
-        .theme-switcher {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 16px;
-        }
-    </style>
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <div class="theme-switcher">
@@ -199,6 +21,20 @@
     </div>
     <div class="controls">
         <button class="dice" id="rollDice">Бросить кубик</button>
+        <div class="gen-container">
+            <div class="contain-dice-6">
+                <div class="dice-6">
+                    <ol class="die-list even-roll" data-roll="1" id="animatedDice">
+                        <li class="die-item" data-side="1"><span class="dot"></span></li>
+                        <li class="die-item" data-side="2"><span class="dot"></span><span class="dot"></span></li>
+                        <li class="die-item" data-side="3"><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                        <li class="die-item" data-side="4"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                        <li class="die-item" data-side="5"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                        <li class="die-item" data-side="6"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="log">
         <table class="log-table" id="logTable">
@@ -212,94 +48,5 @@
             <tbody id="logBody"></tbody>
         </table>
     </div>
-    <script>
-        const board = document.getElementById("board");
-        const player = document.getElementById("player");
-        const rollDice = document.getElementById("rollDice");
-        const logBody = document.getElementById("logBody");
-        const restartGame = document.getElementById("restartGame");
-        const themeToggle = document.getElementById("themeToggle");
-
-        const cellNames = [
-            "Земля", "Желание", "Гнев", "Жадность", "Дисциплина", "Вожделение", "Обман", "Праведность", "Милосердие",
-            "Ненависть", "Смирение", "Ложь", "Служение", "Хитрость", "Спокойствие", "Жестокость", "Преданность", "Гордыня",
-            "Эгоизм", "Самоконтроль", "Невежество", "Ясность", "Благодарность", "Тщеславие", "Удовольствие", "Удовлетворение",
-            "Зависть", "Доброта", "Счастье", "Неуверенность", "Прощение", "Дружба", "Энергия", "Лень", "Вдохновение",
-            "Сомнение", "Мудрость", "Признание", "Радость", "Иллюзия", "Сострадание", "Любовь", "Искушение", "Доверие",
-            "Сила", "Благодать", "Наблюдение", "Озарение", "Покой", "Освобождение", "Духовная практика", "Единство",
-            "Осознание", "Истина", "Бесстрашие", "Созерцание", "Интуиция", "Харизма", "Гармония", "Устойчивость",
-            "Прозрение", "Целостность", "Присутствие", "Бесконечность", "Абсолют", "Нирвана", "Блаженство", "Космическое Сознание",
-            "Трансцендентность", "Просветление", "Мокша", "Самореализация"
-        ];
-
-        const boardSize = 72;
-        let currentPosition = 1;
-        let moveCount = 0;
-
-        // Создание игрового поля
-        for (let i = 0; i < 8; i++) {
-            for (let j = 0; j < 9; j++) {
-                const index = (i % 2 === 0) ? (i * 9 + j) : (i * 9 + (8 - j));
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
-                cell.innerHTML = `<span>${72 - index}</span><br>${cellNames[71 - index]}`;
-                board.appendChild(cell);
-            }
-        }
-
-        function movePlayer(position) {
-            const row = Math.floor((position - 1) / 9);
-            const col = (position - 1) % 9;
-            const x = (row % 2 === 0 ? col + 0.5 : 8 - col + 0.5) * (100 / 9);
-            const y = (7 - row + 0.5) * (100 / 8);
-            player.style.left = `${x}%`;
-            player.style.top = `${y}%`;
-        }
-
-        movePlayer(currentPosition);
-
-        rollDice.addEventListener("click", () => {
-            const diceRoll = Math.floor(Math.random() * 6) + 1;
-            let newPosition = currentPosition + diceRoll;
-            if (newPosition > boardSize) newPosition = boardSize;
-
-            logMove(diceRoll, `Игрок перемещается с ${currentPosition} на ${newPosition}`);
-            currentPosition = newPosition;
-
-            movePlayer(currentPosition);
-
-            if (currentPosition === boardSize) {
-                logMove("Финиш", "Поздравляем! Вы достигли Космического Сознания!");
-                rollDice.disabled = true;
-            }
-        });
-
-        function logMove(diceRoll, description) {
-            moveCount++;
-            const row = document.createElement("tr");
-            row.innerHTML = `<td>${moveCount}</td><td>${diceRoll}</td><td>${description}</td>`;
-            logBody.prepend(row);
-        }
-
-        restartGame.addEventListener("click", () => {
-            currentPosition = 1;
-            moveCount = 0;
-            logBody.innerHTML = "";
-            movePlayer(currentPosition);
-            rollDice.disabled = false;
-        });
-
-        themeToggle.addEventListener("change", () => {
-            if (themeToggle.checked) {
-                document.documentElement.style.setProperty('--background-color-light', '#333');
-                document.documentElement.style.setProperty('--text-color-light', '#fff');
-                document.documentElement.style.setProperty('--primary-color-light', '#5a9');
-            } else {
-                document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
-                document.documentElement.style.setProperty('--text-color-light', '#000');
-                document.documentElement.style.setProperty('--primary-color-light', '#007bff');
-            }
-        });
-    </script>
 </body>
 </html>
