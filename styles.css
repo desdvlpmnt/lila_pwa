@@ -232,3 +232,15 @@ body {
 .die-item[data-side="6"] .dot:nth-child(6) { top: 80%; left: 80%; transform: translate(-50%, -50%); }
 
 .die-list { transition: transform 0.6s ease; }
+
+/* Анимация броска */
+.die-list {
+    transition: transform 0.6s ease; /* Добавляет плавный переход для вращения кубика */
+}
+
+.die-list[data-roll="1"] { transform: rotateX(0deg) rotateY(0deg); }
+.die-list[data-roll="2"] { transform: rotateY(180deg); }
+.die-list[data-roll="3"] { transform: rotateY(-90deg); }
+.die-list[data-roll="4"] { transform: rotateY(90deg); }
+.die-list[data-roll="5"] { transform: rotateX(-90deg); }
+.die-list[data-roll="6"] { transform: rotateX(90deg); }
