@@ -69,10 +69,14 @@ const cellNames = [
 ];
 
 // Позиции лестниц на игровом поле
-const ladders = { 3: 22, 5: 8, 11: 26, 20: 29 };
+const ladders = {
+    10: 23, 12: 8, 17: 69, 20: 32, 22: 60, 27: 41, 28: 50, 37: 66, 45: 67, 54: 68
+};
 
 // Позиции змей на игровом поле
-const snakes = { 17: 4, 19: 7, 21: 9, 27: 1 };
+const snakes = {
+    16: 4, 24: 7, 29: 6, 44: 9, 46: 62, 52: 35, 55: 3, 61: 13, 63: 2, 72: 51
+};
 
 const boardSize = 72;
 let currentPosition = 1;
@@ -104,31 +108,69 @@ movePlayer(currentPosition);
 
 // Бросок кубика
 rollDice.addEventListener("click", () => {
-    const diceRoll = Math.floor(Math.random() * 6) + 1;
-    
-    // Устанавливаем data-roll для анимации кубика
-    animatedDice.setAttribute('data-roll', diceRoll);
+    let diceRoll;
+    if (currentPosition === 1) {
+        // Пока не выпадет 6, продолжаем бросать кубик
+        do {
+            diceRoll = Math.floor(Math.random() * 6) + 1;
+            animatedDice.setAttribute('data-roll', diceRoll);
+            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
+        } while (diceRoll !== 6);
+        currentPosition = 6;
+        logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
+    } else {
+        diceRoll = Math.floor(Math.random() * 6) + 1;
+        animatedDice.setAttribute('data-roll', diceRoll);
 
-    let newPosition = currentPosition + diceRoll;
-    if (newPosition > boardSize) newPosition = boardSize;
+        let diceSum = 0;
+        let currentRoll = diceRoll;
 
-    logMove(diceRoll, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
-    currentPosition = newPosition;
+        // Если выпадает 6, продолжаем бросать
+        while (currentRoll === 6) {
+            diceSum += currentRoll;
+            logMove(currentRoll, "Выпала шестерка, продолжаем бросать");
+            currentRoll = Math.floor(Math.random() * 6) + 1;
+            animatedDice.setAttribute('data-roll', currentRoll);
+        }
 
-    if (ladders[currentPosition]) {
-        logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
-        currentPosition = ladders[currentPosition];
-    } else if (snakes[currentPosition]) {
-        logMove("Змея", `Спускаемся на ${snakes[currentPosition]} (${cellNames[snakes[currentPosition] - 1]})`);
-        currentPosition = snakes[currentPosition];
+        diceSum += currentRoll;
+        let newPosition = currentPosition + diceSum;
+
+        if (newPosition > boardSize) newPosition = boardSize;
+
+        logMove(diceSum, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
+        currentPosition = newPosition;
+
+        if (ladders[currentPosition]) {
+            logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
+            currentPosition = ladders[currentPosition];
+        } else if (snakes[currentPosition]) {
+            logMove("Змея", `Спускаемся на ${snakes[currentPosition]} (${cellNames[snakes[currentPosition] - 1]})`);
+            currentPosition = snakes[currentPosition];
+        }
+
+        // Проверка на правила для полей 69, 70, 71
+        if (currentPosition >= 69 && currentPosition < 72) {
+            while (currentPosition < 72) {
+                diceRoll = Math.floor(Math.random() * 6) + 1;
+                animatedDice.setAttribute('data-roll', diceRoll);
+                logMove(diceRoll, `Бросаем для попадания на 72: ${diceRoll}`);
+                currentPosition += diceRoll;
+                if (currentPosition >= 72) {
+                    currentPosition = 72;
+                    break;
+                }
+            }
+        }
+
+        // Проверка на завершение игры
+        if (currentPosition === 68) {
+            logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
+            rollDice.disabled = true;
+        }
     }
 
     movePlayer(currentPosition);
-
-    if (currentPosition === boardSize) {
-        logMove("Финиш", "Поздравляем! Вы достигли Космического Сознания!");
-        rollDice.disabled = true;
-    }
 });
 
 // Логирование хода игрока
