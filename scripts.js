@@ -102,17 +102,12 @@ function movePlayer(position) {
 // Инициализация позиции игрока
 movePlayer(currentPosition);
 
-// Обработка броска кубика
+// Бросок кубика
 rollDice.addEventListener("click", () => {
     const diceRoll = Math.floor(Math.random() * 6) + 1;
-
-    // Удаляем атрибут `data-roll`, чтобы сбросить состояние анимации
-    animatedDice.removeAttribute('data-roll');
-
-    // Устанавливаем новый атрибут с задержкой, чтобы анимация сработала
-    setTimeout(() => {
-        animatedDice.setAttribute('data-roll', diceRoll);
-    }, 10); // Небольшая задержка для перезапуска анимации
+    
+    // Устанавливаем data-roll для анимации кубика
+    animatedDice.setAttribute('data-roll', diceRoll);
 
     let newPosition = currentPosition + diceRoll;
     if (newPosition > boardSize) newPosition = boardSize;
@@ -132,7 +127,7 @@ rollDice.addEventListener("click", () => {
 
     if (currentPosition === boardSize) {
         logMove("Финиш", "Поздравляем! Вы достигли Космического Сознания!");
-        rollDice.disabled = true; // Отключение кнопки после окончания игры
+        rollDice.disabled = true;
     }
 });
 
