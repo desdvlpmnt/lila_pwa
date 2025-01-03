@@ -145,156 +145,6 @@
             right: 10px;
             font-size: 16px;
         }
-
-        /* Стили для 3D кубика */
-        .gen-container {
-            display: inline-block;
-            margin-top: 10px;
-            position: relative;
-            width: 80px;
-            height: 80px;
-            perspective: 600px;
-            margin-left: 20px; /* Отступ, чтобы сдвинуть кубик правее кнопки */
-        }
-
-        .contain-dice-6 {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-        }
-
-        .dice-6 {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 0.6s ease;
-        }
-
-        .die-list {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            position: relative;
-            transform-style: preserve-3d;
-        }
-
-        .die-item {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            background: #fff;
-            border: 2px solid #000;
-            box-sizing: border-box;
-        }
-
-        /* Позиции граней в 3D */
-        .die-item[data-side="1"] { transform: rotateX(0deg) translateZ(40px); }
-        .die-item[data-side="2"] { transform: rotateY(180deg) translateZ(40px); }
-        .die-item[data-side="3"] { transform: rotateY(-90deg) translateZ(40px); }
-        .die-item[data-side="4"] { transform: rotateY(90deg) translateZ(40px); }
-        .die-item[data-side="5"] { transform: rotateX(-90deg) translateZ(40px); }
-        .die-item[data-side="6"] { transform: rotateX(90deg) translateZ(40px); }
-
-        .dot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #000;
-        }
-
-        /* Расположение точек для каждой грани */
-        /* Сторона 1: одна точка в центре */
-        .die-item[data-side="1"] .dot {
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-        }
-
-        /* Сторона 2: две точки по диагонали */
-        .die-item[data-side="2"] .dot:nth-child(1) {
-            top: 20%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="2"] .dot:nth-child(2) {
-            top: 80%; left: 80%; transform: translate(-50%, -50%);
-        }
-
-        /* Сторона 3: три точки (две по диагонали и одна в центре) */
-        .die-item[data-side="3"] .dot:nth-child(1) {
-            top: 20%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="3"] .dot:nth-child(2) {
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="3"] .dot:nth-child(3) {
-            top: 80%; left: 80%; transform: translate(-50%, -50%);
-        }
-
-        /* Сторона 4: четыре угла */
-        .die-item[data-side="4"] .dot:nth-child(1) {
-            top: 20%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="4"] .dot:nth-child(2) {
-            top: 20%; left: 80%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="4"] .dot:nth-child(3) {
-            top: 80%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="4"] .dot:nth-child(4) {
-            top: 80%; left: 80%; transform: translate(-50%, -50%);
-        }
-
-        /* Сторона 5: четыре угла + центр */
-        .die-item[data-side="5"] .dot:nth-child(1) {
-            top: 20%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="5"] .dot:nth-child(2) {
-            top: 20%; left: 80%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="5"] .dot:nth-child(3) {
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="5"] .dot:nth-child(4) {
-            top: 80%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="5"] .dot:nth-child(5) {
-            top: 80%; left: 80%; transform: translate(-50%, -50%);
-        }
-
-        /* Сторона 6: две вертикальные колонки по три точки */
-        .die-item[data-side="6"] .dot:nth-child(1) {
-            top: 20%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="6"] .dot:nth-child(2) {
-            top: 50%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="6"] .dot:nth-child(3) {
-            top: 80%; left: 20%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="6"] .dot:nth-child(4) {
-            top: 20%; left: 80%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="6"] .dot:nth-child(5) {
-            top: 50%; left: 80%; transform: translate(-50%, -50%);
-        }
-        .die-item[data-side="6"] .dot:nth-child(6) {
-            top: 80%; left: 80%; transform: translate(-50%, -50%);
-        }
-
-        /* Правильные повороты для отображения нужной стороны при выпавшем числе */
-        .die-list[data-roll="1"] { transform: rotateX(0deg) rotateY(0deg); }     /* Лицо 1 */
-        .die-list[data-roll="2"] { transform: rotateY(180deg); }                 /* Лицо 2 (спинка)*/
-        .die-list[data-roll="4"] { transform: rotateY(-90deg); }                 /* Лицо 3 (слева)*/
-        .die-list[data-roll="3"] { transform: rotateY(90deg); }                  /* Лицо 4 (справа)*/
-        .die-list[data-roll="6"] { transform: rotateX(-90deg); }                 /* Лицо 5 (сверху)*/
-        .die-list[data-roll="5"] { transform: rotateX(90deg); }                  /* Лицо 6 (снизу)*/
-
-        .die-list {
-            transition: transform 0.6s ease;
-        }
     </style>
 </head>
 <body>
@@ -310,176 +160,75 @@
     </div>
     <div class="controls">
         <button class="dice" id="rollDice">Бросить кубик</button>
-        <!-- Контейнер с 3D кубиком -->
-        <div class="gen-container">
-            <div class="contain-dice-6">
-                <div class="dice-6">
-                    <ol class="die-list even-roll" data-roll="1" id="animatedDice">
-                        <li class="die-item" data-side="1">
-                            <span class="dot"></span>
-                        </li>
-                        <li class="die-item" data-side="2">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </li>
-                        <li class="die-item" data-side="3">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </li>
-                        <li class="die-item" data-side="4">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </li>
-                        <li class="die-item" data-side="5">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </li>
-                        <li class="die-item" data-side="6">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
     </div>
-    <div class="log">
-        <table class="log-table" id="logTable">
-            <thead>
-                <tr>
-                    <th>Ход</th>
-                    <th>Кубик</th>
-                    <th>Описание</th>
-                </tr>
-            </thead>
-            <tbody id="logBody">
-            </tbody>
-        </table>
-    </div>
-
     <script>
-        const board = document.getElementById("board");
-        const player = document.getElementById("player");
-        const rollDice = document.getElementById("rollDice");
-        const logBody = document.getElementById("logBody");
-        const restartGame = document.getElementById("restartGame");
-        const themeToggle = document.getElementById("themeToggle");
-        const animatedDice = document.getElementById("animatedDice");
+        let deferredPrompt;
 
-        const cellNames = [
-            "Земля", "Желание", "Гнев", "Жадность", "Дисциплина", "Вожделение", "Обман", "Праведность", "Милосердие",
-            "Ненависть", "Смирение", "Ложь", "Служение", "Хитрость", "Спокойствие", "Жестокость", "Преданность", "Гордыня",
-            "Эгоизм", "Самоконтроль", "Невежество", "Ясность", "Благодарность", "Тщеславие", "Удовольствие", "Удовлетворение",
-            "Зависть", "Доброта", "Счастье", "Неуверенность", "Прощение", "Дружба", "Энергия", "Лень", "Вдохновение",
-            "Сомнение", "Мудрость", "Признание", "Радость", "Иллюзия", "Сострадание", "Любовь", "Искушение", "Доверие",
-            "Сила", "Благодать", "Наблюдение", "Озарение", "Покой", "Освобождение", "Духовная практика", "Единство",
-            "Осознание", "Истина", "Бесстрашие", "Созерцание", "Интуиция", "Харизма", "Гармония", "Устойчивость",
-            "Прозрение", "Целостность", "Присутствие", "Бесконечность", "Абсолют", "Нирвана", "Блаженство", "Космическое Сознание",
-            "Трансцендентность", "Просветление", "Мокша", "Самореализация"
-        ];
+        // Событие "beforeinstallprompt"
+        window.addEventListener("beforeinstallprompt", (e) => {
+            // Предотвращаем автоматическое появление
+            e.preventDefault();
+            deferredPrompt = e;
 
-        const ladders = { 3: 22, 5: 8, 11: 26, 20: 29 };
-        const snakes = { 17: 4, 19: 7, 21: 9, 27: 1 };
-
-        const boardSize = 72;
-        let currentPosition = 1;
-        let moveCount = 0;
-
-        // Создание игрового поля
-        for (let i = 0; i < 8; i++) {
-            for (let j = 0; j < 9; j++) {
-                const index = (i % 2 === 0)
-                    ? (i * 9 + j)
-                    : (i * 9 + (8 - j));
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
-                cell.innerHTML = `<span>${72 - index}</span><br>${cellNames[71 - index]}`;
-                board.appendChild(cell);
-            }
-        }
-
-        // Перемещение игрока
-        function movePlayer(position) {
-            const row = Math.floor((position - 1) / 9);
-            const col = (position - 1) % 9;
-            const x = (row % 2 === 0 ? col + 0.5 : 8 - col + 0.5) * (100 / 9);
-            const y = (7 - row + 0.5) * (100 / 8);
-            player.style.left = `${x}%`;
-            player.style.top = `${y}%`;
-        }
-
-        // Инициализация позиции игрока
-        movePlayer(currentPosition);
-
-        // Бросок кубика
-        rollDice.addEventListener("click", () => {
-            const diceRoll = Math.floor(Math.random() * 6) + 1;
-            
-            // Устанавливаем data-roll для анимации кубика
-            animatedDice.setAttribute('data-roll', diceRoll);
-
-            let newPosition = currentPosition + diceRoll;
-            if (newPosition > boardSize) newPosition = boardSize;
-
-            logMove(diceRoll, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
-            currentPosition = newPosition;
-
-            if (ladders[currentPosition]) {
-                logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
-                currentPosition = ladders[currentPosition];
-            } else if (snakes[currentPosition]) {
-                logMove("Змея", `Спускаемся на ${snakes[currentPosition]} (${cellNames[snakes[currentPosition] - 1]})`);
-                currentPosition = snakes[currentPosition];
-            }
-
-            movePlayer(currentPosition);
-
-            if (currentPosition === boardSize) {
-                logMove("Финиш", "Поздравляем! Вы достигли Космического Сознания!");
-                rollDice.disabled = true;
+            // Проверяем первый вход
+            if (!localStorage.getItem("installPromptShown")) {
+                localStorage.setItem("installPromptShown", "true");
+                showInstallBanner();
             }
         });
 
-        // Логирование хода
-        function logMove(diceRoll, description) {
-            moveCount++;
-            const row = document.createElement("tr");
-            row.innerHTML = `<td>${moveCount}</td><td>${diceRoll}</td><td>${description}</td>`;
-            logBody.prepend(row);
+        // Показать баннер установки
+        function showInstallBanner() {
+            const banner = document.createElement("div");
+            banner.style = `
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                z-index: 1000;
+            `;
+            banner.innerHTML = `
+                <p>Установите приложение для удобного использования!</p>
+                <button id="installApp" style="
+                    background-color: white;
+                    color: #007bff;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                ">Установить</button>
+                <button id="dismissBanner" style="
+                    margin-left: 10px;
+                    background-color: transparent;
+                    color: white;
+                    border: 1px solid white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                ">Закрыть</button>
+            `;
+            document.body.appendChild(banner);
+
+            document.getElementById("installApp").addEventListener("click", () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choice) => {
+                    if (choice.outcome === "accepted") {
+                        console.log("Приложение установлено");
+                    } else {
+                        console.log("Установка отклонена");
+                    }
+                    banner.remove();
+                });
+            });
+
+            document.getElementById("dismissBanner").addEventListener("click", () => {
+                banner.remove();
+            });
         }
-
-        // Перезапуск игры
-        restartGame.addEventListener("click", () => {
-            currentPosition = 1;
-            moveCount = 0;
-            logBody.innerHTML = "";
-            animatedDice.setAttribute('data-roll', 1); // Сбросить кубик в исходное положение
-            movePlayer(currentPosition);
-            rollDice.disabled = false;
-        });
-
-        // Переключение темы
-        themeToggle.addEventListener("change", () => {
-            if (themeToggle.checked) {
-                document.documentElement.style.setProperty('--background-color-light', '#333');
-                document.documentElement.style.setProperty('--text-color-light', '#fff');
-                document.documentElement.style.setProperty('--primary-color-light', '#5a9');
-            } else {
-                document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
-                document.documentElement.style.setProperty('--text-color-light', '#000');
-                document.documentElement.style.setProperty('--primary-color-light', '#007bff');
-            }
-        });
     </script>
 </body>
 </html>
