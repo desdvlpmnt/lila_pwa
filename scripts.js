@@ -109,26 +109,24 @@ movePlayer(currentPosition);
 // Бросок кубика
 const diceContainer = document.getElementById("diceContainer");
 
-diceContainer.addEventListener("click", () => {
+rollDice.addEventListener("click", () => {
+    if (currentPosition === 68) { // Проверяем завершение игры перед началом хода
+        logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
+        rollDice.disabled = true;
+        return; // Останавливаем выполнение дальнейшего кода
+    }
+
     let diceRoll;
     if (currentPosition === 1) {
         // Пока не выпадет 6, продолжаем бросать кубик
         do {
             diceRoll = Math.floor(Math.random() * 6) + 1;
             animatedDice.setAttribute('data-roll', diceRoll);
-            logMove(diceRoll, `Начальный бросок: ${diceRoll}`); // Лог каждого броска
-
-            // Если не 6, ждем следующего броска
-            if (diceRoll !== 6) {
-                alert("Вам нужно выбросить 6, чтобы начать игру.");
-                return;
-            }
+            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
         } while (diceRoll !== 6);
-        
-        currentPosition = 6; // Перемещаем на поле 6
+        currentPosition = 6;
         logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
     } else {
-        // Основной ход игрока
         diceRoll = Math.floor(Math.random() * 6) + 1;
         animatedDice.setAttribute('data-roll', diceRoll);
 
@@ -151,6 +149,12 @@ diceContainer.addEventListener("click", () => {
         logMove(diceSum, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
+        if (currentPosition === 68) { // Проверка завершения после основного перемещения
+            logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
+            rollDice.disabled = true;
+            return;
+        }
+
         if (ladders[currentPosition]) {
             logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
             currentPosition = ladders[currentPosition];
@@ -171,12 +175,6 @@ diceContainer.addEventListener("click", () => {
                     break;
                 }
             }
-        }
-
-        // Проверка на завершение игры
-        if (currentPosition === 68) {
-            logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-            rollDice.disabled = true;
         }
     }
 
