@@ -15,12 +15,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--background-color-light);
-    color: var(--text-color-light);
-    background-image: url('back.png'); /* Установка фонового изображения */
-    background-size: cover;           /* Изображение покрывает всю область */
-    background-repeat: no-repeat;     /* Отключение повторения изображения */
-    background-attachment: fixed;     /* Фон остается на месте при прокрутке */
+    background-image: url('back.png'); /* Устанавливаем фоновое изображение */
+    background-repeat: no-repeat;
+    background-size: cover; /* Изображение растягивается по всему экрану */
+    background-position: center; /* Центрируем изображение */
+    background-color: var(--background-color-light); /* Фон для темы */
+    color: var(--text-color-light); /* Цвет текста */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход между темами */
 }
 
 .board-container {
