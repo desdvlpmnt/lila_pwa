@@ -105,7 +105,14 @@ movePlayer(currentPosition);
 // Обработка броска кубика
 rollDice.addEventListener("click", () => {
     const diceRoll = Math.floor(Math.random() * 6) + 1;
-    animatedDice.setAttribute('data-roll', diceRoll); // Анимация броска кубика
+
+    // Удаляем атрибут `data-roll`, чтобы сбросить состояние анимации
+    animatedDice.removeAttribute('data-roll');
+
+    // Устанавливаем новый атрибут с задержкой, чтобы анимация сработала
+    setTimeout(() => {
+        animatedDice.setAttribute('data-roll', diceRoll);
+    }, 10); // Небольшая задержка для перезапуска анимации
 
     let newPosition = currentPosition + diceRoll;
     if (newPosition > boardSize) newPosition = boardSize;
