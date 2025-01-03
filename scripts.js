@@ -107,7 +107,9 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
-rollDice.addEventListener("click", () => {
+const diceContainer = document.getElementById("diceContainer");
+
+diceContainer.addEventListener("click", () => {
     let diceRoll;
     if (currentPosition === 1) {
         // Пока не выпадет 6, продолжаем бросать кубик
