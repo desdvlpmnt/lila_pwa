@@ -114,11 +114,19 @@ rollDice.addEventListener("click", () => {
         do {
             diceRoll = Math.floor(Math.random() * 6) + 1;
             animatedDice.setAttribute('data-roll', diceRoll);
-            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
+            logMove(diceRoll, `Начальный бросок: ${diceRoll}`); // Лог каждого броска
+
+            // Если не 6, ждем следующего броска
+            if (diceRoll !== 6) {
+                alert("Вам нужно выбросить 6, чтобы начать игру.");
+                return;
+            }
         } while (diceRoll !== 6);
-        currentPosition = 6;
+        
+        currentPosition = 6; // Перемещаем на поле 6
         logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
     } else {
+        // Основной ход игрока
         diceRoll = Math.floor(Math.random() * 6) + 1;
         animatedDice.setAttribute('data-roll', diceRoll);
 
