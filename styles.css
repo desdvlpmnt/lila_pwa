@@ -28,6 +28,17 @@ body {
     border: 2px solid var(--text-color-light);
 }
 
+.game-version {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #555; /* Можно изменить на подходящий цвет */
+    text-align: center;
+    z-index: 1000;
+}
+
 .board {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
