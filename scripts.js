@@ -107,43 +107,46 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
-// Функция обработки клика на кубик
-function handleDiceClick() {
+// Бросок кубика при клике на него
+animatedDice.addEventListener("click", function handleDiceClick() {
     let diceRoll;
-
     if (currentPosition === 1) {
         // Начальный бросок: продолжаем, пока не выпадет 6
         do {
             diceRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', diceRoll);
+            animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
             logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
         } while (diceRoll !== 6);
 
-        currentPosition = 6; // Перемещаем игрока на поле 6
-        logMove(diceRoll, "Игрок начинает игру и переходит на поле 6");
+        // Перемещаем игрока на поле 6
+        currentPosition = 6;
+        logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
     } else {
         // Основной ход
         diceRoll = Math.floor(Math.random() * 6) + 1;
-        animatedDice.setAttribute('data-roll', diceRoll);
+        animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
 
         let diceSum = 0;
         let currentRoll = diceRoll;
 
+        // Если выпадает 6, продолжаем бросать
         while (currentRoll === 6) {
             diceSum += currentRoll;
             logMove(currentRoll, "Выпала шестерка, продолжаем бросать");
             currentRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', currentRoll);
+            animatedDice.setAttribute('data-roll', currentRoll); // Отображение текущей стороны кубика
         }
 
         diceSum += currentRoll;
         let newPosition = currentPosition + diceSum;
 
+        // Проверка на выход за пределы игрового поля
         if (newPosition > boardSize) newPosition = boardSize;
 
         logMove(diceSum, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
+        // Проверка на лестницы и змеи
         if (ladders[currentPosition]) {
             logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
             currentPosition = ladders[currentPosition];
@@ -156,7 +159,7 @@ function handleDiceClick() {
         if (currentPosition >= 69 && currentPosition < 72) {
             while (currentPosition < 72) {
                 diceRoll = Math.floor(Math.random() * 6) + 1;
-                animatedDice.setAttribute('data-roll', diceRoll);
+                animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
                 logMove(diceRoll, `Бросаем для попадания на 72: ${diceRoll}`);
                 currentPosition += diceRoll;
                 if (currentPosition >= 72) {
@@ -169,12 +172,12 @@ function handleDiceClick() {
         // Проверка завершения игры
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-            animatedDice.removeEventListener("click", handleDiceClick);
+            animatedDice.removeEventListener("click", handleDiceClick); // Отключаем обработчик после завершения
         }
     }
 
     movePlayer(currentPosition);
-}
+});
 
 // Добавление обработчика клика
 animatedDice.addEventListener("click", handleDiceClick);
