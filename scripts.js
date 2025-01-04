@@ -148,7 +148,7 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         // Проверка на выход за пределы игрового поля
         if (newPosition > boardSize) newPosition = boardSize;
 
-        logMove(diceSum, `Перемещаемся с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
+        logMove(diceSum, `${currentPosition} → ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
         // Проверка на лестницы и змеи
@@ -229,7 +229,7 @@ function movePlayer(position) {
     // Удаляем шлейф после завершения анимации
     setTimeout(() => {
         trail.remove();
-    }, 5500);
+    }, 55500);
 
     // Перемещаем игрока на новую позицию
     player.style.left = `${x}%`;
