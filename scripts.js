@@ -55,12 +55,12 @@ const restartGame = document.getElementById("restartGame");
 const themeToggle = document.getElementById("themeToggle");
 const animatedDice = document.getElementById("animatedDice");
 
-// Установить темную тему по умолчанию
+// Установка темной темы по умолчанию
 window.addEventListener("load", () => {
-    themeToggle.checked = true;
-    document.documentElement.style.setProperty('--background-color-light', '#333');
-    document.documentElement.style.setProperty('--text-color-light', '#fff');
-    document.documentElement.style.setProperty('--primary-color-light', '#5a9');
+    themeToggle.checked = true; // По умолчанию темная тема включена
+    document.documentElement.style.setProperty('--background-color-light', '#333'); // Установка темного фона
+    document.documentElement.style.setProperty('--text-color-light', '#fff'); // Белый текст
+    document.documentElement.style.setProperty('--primary-color-light', '#5a9'); // Основной цвет темной темы
 });
 
 // Массив названий клеток игрового поля
