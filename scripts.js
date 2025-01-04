@@ -148,7 +148,7 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         // Проверка на выход за пределы игрового поля
         if (newPosition > boardSize) newPosition = boardSize;
 
-        logMove(diceSum, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
+        logMove(diceSum, `Перемещаемся с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
         // Проверка на лестницы и змеи
