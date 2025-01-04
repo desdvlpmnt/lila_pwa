@@ -201,16 +201,16 @@ restartGame.addEventListener("click", () => {
     rollDice.disabled = false; // Активируем кнопку броска кубика
 });
 
-// Установить тёмную тему по умолчанию
+// Установить темную тему по умолчанию
 window.addEventListener("load", () => {
     const isDarkTheme = localStorage.getItem("darkTheme") === "true";
     themeToggle.checked = isDarkTheme;
     applyTheme(isDarkTheme);
 });
 
-// Функция применения темы
-themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
+// Применение темы
+function applyTheme(isDark) {
+    if (isDark) {
         document.documentElement.style.setProperty('--background-color-light', '#333');
         document.documentElement.style.setProperty('--text-color-light', '#fff');
         document.documentElement.style.setProperty('--primary-color-light', '#5a9');
@@ -219,10 +219,11 @@ themeToggle.addEventListener("change", () => {
         document.documentElement.style.setProperty('--text-color-light', '#000');
         document.documentElement.style.setProperty('--primary-color-light', '#007bff');
     }
-});
+}
 
 // Переключение темы
 themeToggle.addEventListener("change", () => {
-    document.body.classList.toggle('dark-theme', themeToggle.checked);
+    const isDarkTheme = themeToggle.checked;
+    localStorage.setItem("darkTheme", isDarkTheme); // Сохранить выбранную тему
+    applyTheme(isDarkTheme);
 });
-
