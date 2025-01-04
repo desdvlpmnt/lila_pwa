@@ -107,28 +107,33 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
-rollDice.addEventListener("click", () => {
+// Добавить визуальное сообщение вместо alert
+let messageElement = document.createElement("div");
+messageElement.id = "message";
+messageElement.style.textAlign = "center";
+messageElement.style.marginTop = "10px";
+document.body.appendChild(messageElement);
+
+animatedDice.addEventListener("click", function handleDiceClick() {
     let diceRoll;
     if (currentPosition === 1) {
-        // Пока не выпадет 6, продолжаем бросать кубик
+        // Начальный бросок: продолжаем, пока не выпадет 6
         do {
             diceRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', diceRoll);
-            logMove(diceRoll, `Начальный бросок: ${diceRoll}`); // Лог каждого броска
-
-            // Если не 6, ждем следующего броска
-            if (diceRoll !== 6) {
-                alert("Вам нужно выбросить 6, чтобы начать игру.");
-                return;
-            }
+            animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
+            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
         } while (diceRoll !== 6);
+
+        // Удалить сообщение после успеха
+        messageElement.textContent = "";
         
-        currentPosition = 6; // Перемещаем на поле 6
+        // Перемещаем игрока на поле 6
+        currentPosition = 6;
         logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
     } else {
-        // Основной ход игрока
+        // Основной ход
         diceRoll = Math.floor(Math.random() * 6) + 1;
-        animatedDice.setAttribute('data-roll', diceRoll);
+        animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
 
         let diceSum = 0;
         let currentRoll = diceRoll;
@@ -138,17 +143,19 @@ rollDice.addEventListener("click", () => {
             diceSum += currentRoll;
             logMove(currentRoll, "Выпала шестерка, продолжаем бросать");
             currentRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', currentRoll);
+            animatedDice.setAttribute('data-roll', currentRoll); // Отображение текущей стороны кубика
         }
 
         diceSum += currentRoll;
         let newPosition = currentPosition + diceSum;
 
+        // Проверка на выход за пределы игрового поля
         if (newPosition > boardSize) newPosition = boardSize;
 
         logMove(diceSum, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
+        // Проверка на лестницы и змеи
         if (ladders[currentPosition]) {
             logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
             currentPosition = ladders[currentPosition];
@@ -157,11 +164,11 @@ rollDice.addEventListener("click", () => {
             currentPosition = snakes[currentPosition];
         }
 
-        // Проверка на правила для полей 69, 70, 71
+        // Проверка для позиций 69, 70, 71
         if (currentPosition >= 69 && currentPosition < 72) {
             while (currentPosition < 72) {
                 diceRoll = Math.floor(Math.random() * 6) + 1;
-                animatedDice.setAttribute('data-roll', diceRoll);
+                animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
                 logMove(diceRoll, `Бросаем для попадания на 72: ${diceRoll}`);
                 currentPosition += diceRoll;
                 if (currentPosition >= 72) {
@@ -171,10 +178,10 @@ rollDice.addEventListener("click", () => {
             }
         }
 
-        // Проверка на завершение игры
+        // Проверка завершения игры
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-            rollDice.disabled = true;
+            animatedDice.removeEventListener("click", handleDiceClick); // Отключаем обработчик после завершения
         }
     }
 
