@@ -204,9 +204,9 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: #cdcdcd; /* Цвет кубика */
-    border: 2px solid #191919; /* Цвет границы кубика */
-    border-radius: 15px; /* Закругленные углы, если нужны */
+    background: #ebebeb; /* Цвет кубика */
+    border: 1px solid #323232; /* Цвет границы кубика */
+    border-radius: 12px; /* Закругленные углы, если нужны */
     box-sizing: border-box;
     transform: translateZ(40px); /* Позиционируем грани в 3D-пространстве */
 }
@@ -223,7 +223,7 @@ body {
     width: 12px; /* Размер точки */
     height: 12px;
     border-radius: 50%; /* Круглая форма */
-    background: radial-gradient(circle, #000 60%, #333); /* Градиент для вдавленного вида */
+    background: radial-gradient(circle, #000 100%, #333); /* Градиент для вдавленного вида */
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.5); /* Внутренняя тень */
 }
 
