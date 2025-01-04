@@ -166,14 +166,14 @@ animatedDice.addEventListener("click", function handleDiceClick() {
             currentPosition = ladders[currentPosition]; // Новая позиция после лестницы
             logMove(
                 "Лестница", // Отображаем "Лестница" в столбце "Кубик"
-                `${previousPosition} → ${currentPosition} ${cellNames[currentPosition - 1]}` // Формат описания в столбце "Описание"
+                `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})` // Формат описания в столбце "Описание"
             );
         } else if (snakes[currentPosition]) {
             const previousPosition = currentPosition; // Текущая позиция до перехода
             currentPosition = snakes[currentPosition]; // Новая позиция после змеи
             logMove(
                 "Змея", // Отображаем "Змея" в столбце "Кубик"
-                `${previousPosition} → ${currentPosition} ${cellNames[currentPosition - 1]}` // Формат описания в столбце "Описание"
+                `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})` // Формат описания в столбце "Описание"
             );
         }
 

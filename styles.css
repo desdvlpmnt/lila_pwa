@@ -269,7 +269,7 @@ body {
     position: absolute;
     transform: translate(-50%, -50%);
     pointer-events: none; /* Шлейф не мешает кликам */
-    animation: fadeOut 1.5s ease-out forwards; /* Анимация исчезновения */
+    animation: fadeOut 2.5s ease-out forwards; /* Анимация исчезновения */
 }
 
 @keyframes fadeOut {
