@@ -107,33 +107,29 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
-// Добавить визуальное сообщение вместо alert
-let messageElement = document.createElement("div");
-messageElement.id = "message";
-messageElement.style.textAlign = "center";
-messageElement.style.marginTop = "10px";
-document.body.appendChild(messageElement);
-
 animatedDice.addEventListener("click", function handleDiceClick() {
-    let diceRoll;
     if (currentPosition === 1) {
-        // Начальный бросок: продолжаем, пока не выпадет 6
-        do {
-            diceRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
-            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
-        } while (diceRoll !== 6);
+        // Проверяем, находится ли игрок на старте
+        const messageElement = document.getElementById("message") || createMessageElement(); // Создаем или используем существующее сообщение
+        let diceRoll = Math.floor(Math.random() * 6) + 1;
 
-        // Удалить сообщение после успеха
-        messageElement.textContent = "";
-        
-        // Перемещаем игрока на поле 6
-        currentPosition = 6;
-        logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
+        animatedDice.setAttribute('data-roll', diceRoll); // Обновляем анимацию кубика
+        logMove(diceRoll, `Бросок: ${diceRoll}`);
+
+        if (diceRoll === 6) {
+            // Если выпала 6, начинаем игру
+            currentPosition = 6;
+            movePlayer(currentPosition);
+            logMove(diceRoll, "Вы выбросили 6! Игра начинается, вы на поле 6.");
+            messageElement.textContent = ""; // Очищаем сообщение
+        } else {
+            // Если не выпала 6, показываем сообщение
+            messageElement.textContent = "Вы должны выбросить 6, чтобы начать игру.";
+        }
     } else {
         // Основной ход
-        diceRoll = Math.floor(Math.random() * 6) + 1;
-        animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
+        let diceRoll = Math.floor(Math.random() * 6) + 1;
+        animatedDice.setAttribute('data-roll', diceRoll);
 
         let diceSum = 0;
         let currentRoll = diceRoll;
@@ -141,9 +137,9 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         // Если выпадает 6, продолжаем бросать
         while (currentRoll === 6) {
             diceSum += currentRoll;
-            logMove(currentRoll, "Выпала шестерка, продолжаем бросать");
+            logMove(currentRoll, "Выпала шестерка, продолжаем бросать.");
             currentRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', currentRoll); // Отображение текущей стороны кубика
+            animatedDice.setAttribute('data-roll', currentRoll);
         }
 
         diceSum += currentRoll;
@@ -164,29 +160,26 @@ animatedDice.addEventListener("click", function handleDiceClick() {
             currentPosition = snakes[currentPosition];
         }
 
-        // Проверка для позиций 69, 70, 71
-        if (currentPosition >= 69 && currentPosition < 72) {
-            while (currentPosition < 72) {
-                diceRoll = Math.floor(Math.random() * 6) + 1;
-                animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
-                logMove(diceRoll, `Бросаем для попадания на 72: ${diceRoll}`);
-                currentPosition += diceRoll;
-                if (currentPosition >= 72) {
-                    currentPosition = 72;
-                    break;
-                }
-            }
-        }
-
         // Проверка завершения игры
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-            animatedDice.removeEventListener("click", handleDiceClick); // Отключаем обработчик после завершения
+            animatedDice.removeEventListener("click", handleDiceClick);
         }
     }
 
     movePlayer(currentPosition);
 });
+
+// Создаем или возвращаем элемент для сообщения
+function createMessageElement() {
+    const messageElement = document.createElement("div");
+    messageElement.id = "message";
+    messageElement.style.textAlign = "center";
+    messageElement.style.marginTop = "10px";
+    messageElement.style.color = "red";
+    document.body.appendChild(messageElement);
+    return messageElement;
+}
 
 // Логирование хода игрока
 function logMove(diceRoll, description) {
