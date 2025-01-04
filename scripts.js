@@ -55,14 +55,6 @@ const restartGame = document.getElementById("restartGame");
 const themeToggle = document.getElementById("themeToggle");
 const animatedDice = document.getElementById("animatedDice");
 
-// Установка темной темы по умолчанию
-window.addEventListener("load", () => {
-    themeToggle.checked = true; // По умолчанию темная тема включена
-    document.documentElement.style.setProperty('--background-color-light', '#333'); // Установка темного фона
-    document.documentElement.style.setProperty('--text-color-light', '#fff'); // Белый текст
-    document.documentElement.style.setProperty('--primary-color-light', '#5a9'); // Основной цвет темной темы
-});
-
 // Массив названий клеток игрового поля
 const cellNames = [
     "Земля", "Желание", "Гнев", "Жадность", "Дисциплина", "Вожделение", "Обман", "Праведность", "Милосердие",
@@ -209,15 +201,29 @@ restartGame.addEventListener("click", () => {
     rollDice.disabled = false; // Активируем кнопку броска кубика
 });
 
-// Переключение темы оформления
-themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
-        document.documentElement.style.setProperty('--background-color-light', '#333'); // Установка темного фона
-        document.documentElement.style.setProperty('--text-color-light', '#fff'); // Белый текст
-        document.documentElement.style.setProperty('--primary-color-light', '#5a9'); // Основной цвет темной темы
-    } else {
-        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4'); // Установка светлого фона
-        document.documentElement.style.setProperty('--text-color-light', '#000'); // Черный текст
-        document.documentElement.style.setProperty('--primary-color-light', '#007bff'); // Основной цвет светлой темы
-    }
+// Установить тёмную тему по умолчанию
+window.addEventListener("load", () => {
+    const isDarkTheme = localStorage.getItem("darkTheme") === "true";
+    themeToggle.checked = isDarkTheme;
+    applyTheme(isDarkTheme);
 });
+
+// Функция применения темы
+function applyTheme(isDark) {
+    if (isDark) {
+        document.documentElement.style.setProperty('--background-color-light', '#333'); // Тёмный фон
+        document.documentElement.style.setProperty('--text-color-light', '#fff'); // Белый текст
+        document.documentElement.style.setProperty('--primary-color-light', '#5a9'); // Основной цвет
+    } else {
+        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4'); // Светлый фон
+        document.documentElement.style.setProperty('--text-color-light', '#000'); // Чёрный текст
+        document.documentElement.style.setProperty('--primary-color-light', '#007bff'); // Основной цвет
+    }
+    localStorage.setItem("darkTheme", isDark); // Сохраняем выбор темы
+}
+
+// Переключение темы
+themeToggle.addEventListener("change", () => {
+    applyTheme(themeToggle.checked);
+});
+
