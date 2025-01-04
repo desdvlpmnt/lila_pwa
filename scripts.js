@@ -202,12 +202,36 @@ restartGame.addEventListener("click", () => {
 // Переключение темы оформления
 themeToggle.addEventListener("change", () => {
     if (themeToggle.checked) {
+        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
+        document.documentElement.style.setProperty('--text-color-light', '#000');
+        document.documentElement.style.setProperty('--primary-color-light', '#007bff'); 
+    } else {
         document.documentElement.style.setProperty('--background-color-light', '#333');
         document.documentElement.style.setProperty('--text-color-light', '#fff');
         document.documentElement.style.setProperty('--primary-color-light', '#5a9');
-    } else {
-        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
-        document.documentElement.style.setProperty('--text-color-light', '#000');
-        document.documentElement.style.setProperty('--primary-color-light', '#007bff');
     }
 });
+
+
+function movePlayer(position) {
+    const row = Math.floor((position - 1) / 9);
+    const col = (position - 1) % 9;
+    const x = (row % 2 === 0 ? col + 0.5 : 8 - col + 0.5) * (100 / 9);
+    const y = (7 - row + 0.5) * (100 / 8);
+
+    // Создаем шлейф на предыдущей позиции игрока
+    const trail = document.createElement("div");
+    trail.classList.add("trail");
+    trail.style.left = player.style.left; // Используем текущую позицию игрока
+    trail.style.top = player.style.top; // Используем текущую позицию игрока
+    document.querySelector(".board-container").appendChild(trail);
+
+    // Удаляем шлейф после завершения анимации
+    setTimeout(() => {
+        trail.remove();
+    }, 3500);
+
+    // Перемещаем игрока на новую позицию
+    player.style.left = `${x}%`;
+    player.style.top = `${y}%`;
+}

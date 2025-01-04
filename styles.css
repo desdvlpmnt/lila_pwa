@@ -1,10 +1,10 @@
 :root {
-    --background-color-light: #f4f4f4;
-    --text-color-light: #000;
-    --background-color-dark: #333;
-    --text-color-dark: #fff;
-    --primary-color-light: #007bff;
-    --primary-color-dark: #5a9;
+    --background-color-light: #333; /* Тёмный фон теперь светлая тема */
+    --text-color-light: #fff; /* Светлый текст для "светлой темы" */
+    --background-color-dark: #f4f4f4; /* Светлый фон теперь тёмная тема */
+    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */
+    --primary-color-light: #5a9; /* Цвет основной кнопки для новой "светлой темы" */
+    --primary-color-dark: #007bff; /* Цвет основной кнопки для новой "тёмной темы" */
 }
 
 body {
@@ -260,3 +260,23 @@ body {
 .die-list[data-roll="3"] { transform: rotateY(90deg); }
 .die-list[data-roll="6"] { transform: rotateX(-90deg); }
 .die-list[data-roll="5"] { transform: rotateX(90deg); }
+
+.trail {
+    width: 40px; /* Размер шлейфа совпадает с размером игрока */
+    height: 40px;
+    background-color: rgba(255, 0, 0, 0.3); /* Полупрозрачный красный цвет */
+    border-radius: 50%; /* Круглый элемент */
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Шлейф не мешает кликам */
+    animation: fadeOut 1.5s ease-out forwards; /* Анимация исчезновения */
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
