@@ -109,6 +109,18 @@ body {
     border-radius: 5px;
 }
 
+#diceContainer {
+    margin-top: 20px; /* Отступ от игрового поля */
+    display: flex;
+    justify-content: center;
+    cursor: pointer; /* Показываем, что на кубик можно нажать */
+}
+
+#animatedDice {
+    width: 80px; /* Размер кубика */
+    height: 80px;
+}
+
 .dice:hover {
     background-color: #0056b3;
 }

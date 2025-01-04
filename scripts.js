@@ -107,6 +107,15 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
+// Найдем элемент кубика
+const diceContainer = document.getElementById("diceContainer");
+
+// Добавим обработчик события клика на кубик
+diceContainer.addEventListener("click", () => {
+    rollDiceFunction(); // Вызываем существующую функцию броска кубика
+});
+
+// Оригинальная функция броска кубика
 rollDice.addEventListener("click", () => {
     let diceRoll;
     if (currentPosition === 1) {
@@ -180,6 +189,7 @@ rollDice.addEventListener("click", () => {
 
     movePlayer(currentPosition);
 });
+
 
 // Логирование хода игрока
 function logMove(diceRoll, description) {
