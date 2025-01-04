@@ -151,13 +151,30 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         logMove(diceSum, `${currentPosition} → ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
-        // Проверка на лестницы и змеи
+/*          // Проверка на лестницы и змеи
         if (ladders[currentPosition]) {
             logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
             currentPosition = ladders[currentPosition];
         } else if (snakes[currentPosition]) {
             logMove("Змея", `Спускаемся на ${snakes[currentPosition]} (${cellNames[snakes[currentPosition] - 1]})`);
             currentPosition = snakes[currentPosition];
+        }
+ */
+        // Проверка на лестницы и змеи
+        if (ladders[currentPosition]) {
+            const previousPosition = currentPosition; // Текущая позиция до перехода
+            currentPosition = ladders[currentPosition]; // Новая позиция после лестницы
+            logMove(
+                "Лестница", // Отображаем "Лестница" в столбце "Кубик"
+                `${previousPosition} → ${currentPosition} ${cellNames[currentPosition - 1]}` // Формат описания в столбце "Описание"
+            );
+        } else if (snakes[currentPosition]) {
+            const previousPosition = currentPosition; // Текущая позиция до перехода
+            currentPosition = snakes[currentPosition]; // Новая позиция после змеи
+            logMove(
+                "Змея", // Отображаем "Змея" в столбце "Кубик"
+                `${previousPosition} → ${currentPosition} ${cellNames[currentPosition - 1]}` // Формат описания в столбце "Описание"
+            );
         }
 
         // Проверка завершения игры
