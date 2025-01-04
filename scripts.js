@@ -209,21 +209,20 @@ window.addEventListener("load", () => {
 });
 
 // Функция применения темы
-function applyTheme(isDark) {
-    if (isDark) {
-        document.documentElement.style.setProperty('--background-color-light', '#333'); // Тёмный фон
-        document.documentElement.style.setProperty('--text-color-light', '#fff'); // Белый текст
-        document.documentElement.style.setProperty('--primary-color-light', '#5a9'); // Основной цвет
+themeToggle.addEventListener("change", () => {
+    if (themeToggle.checked) {
+        document.documentElement.style.setProperty('--background-color-light', '#333');
+        document.documentElement.style.setProperty('--text-color-light', '#fff');
+        document.documentElement.style.setProperty('--primary-color-light', '#5a9');
     } else {
-        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4'); // Светлый фон
-        document.documentElement.style.setProperty('--text-color-light', '#000'); // Чёрный текст
-        document.documentElement.style.setProperty('--primary-color-light', '#007bff'); // Основной цвет
+        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
+        document.documentElement.style.setProperty('--text-color-light', '#000');
+        document.documentElement.style.setProperty('--primary-color-light', '#007bff');
     }
-    localStorage.setItem("darkTheme", isDark); // Сохраняем выбор темы
-}
+});
 
 // Переключение темы
 themeToggle.addEventListener("change", () => {
-    applyTheme(themeToggle.checked);
+    document.body.classList.toggle('dark-theme', themeToggle.checked);
 });
 

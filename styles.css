@@ -272,3 +272,8 @@ body {
 .die-list[data-roll="3"] { transform: rotateY(90deg); }
 .die-list[data-roll="6"] { transform: rotateX(-90deg); }
 .die-list[data-roll="5"] { transform: rotateX(90deg); }
+
+body.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
