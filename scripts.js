@@ -107,6 +107,7 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
+<<<<<<< HEAD
 // Добавляем обработчик события click на сам кубик
 animatedDice.addEventListener("click", () => {
     if (currentPosition === 68) {
@@ -115,6 +116,8 @@ animatedDice.addEventListener("click", () => {
         return;
     }
 
+=======
+>>>>>>> parent of 7217a29 (Бросок через кубик)
 rollDice.addEventListener("click", () => {
     let diceRoll;
     if (currentPosition === 1) {
