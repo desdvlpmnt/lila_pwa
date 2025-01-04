@@ -107,14 +107,6 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
-// Добавляем обработчик события click на сам кубик
-animatedDice.addEventListener("click", () => {
-    if (currentPosition === 68) {
-        logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-        animatedDice.disabled = true; // Отключаем возможность клика на кубике
-        return;
-    }
-
 rollDice.addEventListener("click", () => {
     let diceRoll;
     if (currentPosition === 1) {
@@ -122,11 +114,19 @@ rollDice.addEventListener("click", () => {
         do {
             diceRoll = Math.floor(Math.random() * 6) + 1;
             animatedDice.setAttribute('data-roll', diceRoll);
-            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
+            logMove(diceRoll, `Начальный бросок: ${diceRoll}`); // Лог каждого броска
+
+            // Если не 6, ждем следующего броска
+            if (diceRoll !== 6) {
+                alert("Вам нужно выбросить 6, чтобы начать игру.");
+                return;
+            }
         } while (diceRoll !== 6);
-        currentPosition = 6;
+        
+        currentPosition = 6; // Перемещаем на поле 6
         logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
     } else {
+        // Основной ход игрока
         diceRoll = Math.floor(Math.random() * 6) + 1;
         animatedDice.setAttribute('data-roll', diceRoll);
 
@@ -171,11 +171,10 @@ rollDice.addEventListener("click", () => {
             }
         }
 
-        // Проверка завершения игры
+        // Проверка на завершение игры
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-            animatedDice.disabled = true;
-            return;
+            rollDice.disabled = true;
         }
     }
 
