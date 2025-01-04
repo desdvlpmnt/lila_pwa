@@ -229,7 +229,7 @@ function movePlayer(position) {
     // Удаляем шлейф после завершения анимации
     setTimeout(() => {
         trail.remove();
-    }, 3500);
+    }, 5500);
 
     // Перемещаем игрока на новую позицию
     player.style.left = `${x}%`;

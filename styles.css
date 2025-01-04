@@ -68,21 +68,21 @@ body {
 }
 
 .cell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 5%;
-    font-size: 1vmin;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 1px 1px 2px #000;
-    background: rgba(0, 0, 0, 0.3);
+    display: flex; /* Делает ячейку гибким контейнером */
+    flex-direction: column; /* Располагает текст внутри ячейки по вертикали */
+    align-items: center; /* Центрирует содержимое по горизонтали */
+    justify-content: center; /* Центрирует содержимое по вертикали */
+    text-align: center; /* Центрирует текст */
+    padding: 5%; /* Внутренний отступ от границ ячейки */
+    font-size: 1vmin; /* Размер шрифта текста внутри ячейки */
+    font-weight: bold; /* Делает текст жирным */
+    color: #fff; /* Цвет текста */
+    text-shadow: 1px 1px 2px #000; /* Тень для текста */
+    background: rgba(0, 0, 0, 0.3); /* Полупрозрачный фон */
 }
 
 .cell span {
-    font-size: 1.6vmin;
+    font-size: 2.9vmin; /* Размер шрифта для цифр */
 }
 
 .player {
@@ -280,3 +280,48 @@ body {
         opacity: 0;
     }
 }
+
+.footer {
+    display: flex; /* Располагаем кнопки горизонтально */
+    justify-content: space-around; /* Равномерное распределение кнопок */
+    align-items: center; /* Центрируем элементы по вертикали */
+    padding: 10px 0; /* Отступы сверху и снизу */
+    background-color: rgba(0, 0, 0, 0.1); /* Темная заливка, на 5% темнее основного цвета */
+    border-top: 1px solid rgba(0, 0, 0, 0.2); /* Линия для отделения футера */
+    position: fixed; /* Закрепляем футер */
+    bottom: 0; /* Располагаем его снизу экрана */
+    width: 100%; /* Футер растягивается на весь экран */
+    z-index: 100; /* Поверх остального контента */
+}
+
+.footer-button {
+    display: flex; /* Располагаем иконку и текст горизонтально */
+    flex-direction: column; /* Переводим их в столбец */
+    align-items: center; /* Центрируем по горизонтали */
+    border: none; /* Убираем рамки кнопок */
+    background: none; /* Прозрачный фон */
+    cursor: pointer; /* Указатель при наведении */
+}
+
+.footer-icon {
+    width: 24px; /* Задаем размер иконки */
+    height: 24px; /* Задаем размер иконки */
+    margin-bottom: 5px; /* Отступ между иконкой и текстом */
+}
+
+.footer-button span {
+    font-size: 12px; /* Размер текста под иконкой */
+    color: var(--text-color-light); /* Цвет текста соответствует текущей теме */
+}
+
+.game-version {
+    position: absolute; /* Устанавливаем абсолютное позиционирование */
+    top: 10px; /* Отступ от верхнего края */
+    left: 50px; /* Отступ от левого края */
+    font-size: 12px; /* Размер шрифта */
+    color: #555; /* Цвет текста */
+    padding: 5px 10px; /* Внутренние отступы */
+    border-radius: 5px; /* Скругленные углы */
+    z-index: 1000; /* Поверх других элементов */
+}
+
