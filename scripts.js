@@ -203,9 +203,9 @@ restartGame.addEventListener("click", () => {
 
 // Установить темную тему по умолчанию
 window.addEventListener("load", () => {
-    const isDarkTheme = localStorage.getItem("darkTheme") === "true";
-    themeToggle.checked = isDarkTheme;
-    applyTheme(isDarkTheme);
+    const isDark = localStorage.getItem("darkTheme") === "true";
+    themeToggle.checked = isDark;
+    applyTheme(isDark);
 });
 
 // Применение темы
@@ -223,7 +223,7 @@ function applyTheme(isDark) {
 
 // Переключение темы
 themeToggle.addEventListener("change", () => {
-    const isDarkTheme = themeToggle.checked;
-    localStorage.setItem("darkTheme", isDarkTheme); // Сохранить выбранную тему
-    applyTheme(isDarkTheme);
+    const isDark = themeToggle.checked;
+    localStorage.setItem("darkTheme", isDark); // Сохранить выбранную тему
+    applyTheme(isDark);
 });
