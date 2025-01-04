@@ -207,13 +207,22 @@ function logMove(diceRoll, description) {
 }
 
 // Обработка перезапуска игры
-restartGame.addEventListener("click", () => {
+/* restartGame.addEventListener("click", () => {
     currentPosition = 1;
     moveCount = 0;
     logBody.innerHTML = "";
     animatedDice.setAttribute('data-roll', 1); // Сброс анимации кубика
     movePlayer(currentPosition);
     rollDice.disabled = false; // Активируем кнопку броска кубика
+}); */
+restartGame.addEventListener("click", () => {
+    currentPosition = 1; // Сброс позиции игрока
+    moveCount = 0; // Сброс счетчика ходов
+    fullLog = []; // Очистка полного лога
+    logBody.innerHTML = ""; // Очистка краткого лога
+    animatedDice.setAttribute('data-roll', 1); // Сброс отображения кубика
+    movePlayer(currentPosition); // Возвращаем игрока на старт
+    rollDice.disabled = false; // Разрешаем бросать кубик
 });
 
 // Переключение темы оформления
