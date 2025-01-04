@@ -107,24 +107,28 @@ function movePlayer(position) {
 movePlayer(currentPosition);
 
 // Бросок кубика
-// Бросок кубика при клике на него
-animatedDice.addEventListener("click", function handleDiceClick() {
+rollDice.addEventListener("click", () => {
     let diceRoll;
     if (currentPosition === 1) {
-        // Начальный бросок: продолжаем, пока не выпадет 6
+        // Пока не выпадет 6, продолжаем бросать кубик
         do {
             diceRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
-            logMove(diceRoll, `Начальный бросок: ${diceRoll}`);
-        } while (diceRoll !== 6);
+            animatedDice.setAttribute('data-roll', diceRoll);
+            logMove(diceRoll, `Начальный бросок: ${diceRoll}`); // Лог каждого броска
 
-        // Перемещаем игрока на поле 6
-        currentPosition = 6;
+            // Если не 6, ждем следующего броска
+            if (diceRoll !== 6) {
+                alert("Вам нужно выбросить 6, чтобы начать игру.");
+                return;
+            }
+        } while (diceRoll !== 6);
+        
+        currentPosition = 6; // Перемещаем на поле 6
         logMove(diceRoll, `Игрок начинает игру и переходит на поле 6`);
     } else {
-        // Основной ход
+        // Основной ход игрока
         diceRoll = Math.floor(Math.random() * 6) + 1;
-        animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
+        animatedDice.setAttribute('data-roll', diceRoll);
 
         let diceSum = 0;
         let currentRoll = diceRoll;
@@ -134,19 +138,17 @@ animatedDice.addEventListener("click", function handleDiceClick() {
             diceSum += currentRoll;
             logMove(currentRoll, "Выпала шестерка, продолжаем бросать");
             currentRoll = Math.floor(Math.random() * 6) + 1;
-            animatedDice.setAttribute('data-roll', currentRoll); // Отображение текущей стороны кубика
+            animatedDice.setAttribute('data-roll', currentRoll);
         }
 
         diceSum += currentRoll;
         let newPosition = currentPosition + diceSum;
 
-        // Проверка на выход за пределы игрового поля
         if (newPosition > boardSize) newPosition = boardSize;
 
         logMove(diceSum, `Игрок перемещается с ${currentPosition} на ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
-        // Проверка на лестницы и змеи
         if (ladders[currentPosition]) {
             logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
             currentPosition = ladders[currentPosition];
@@ -155,11 +157,11 @@ animatedDice.addEventListener("click", function handleDiceClick() {
             currentPosition = snakes[currentPosition];
         }
 
-        // Проверка для позиций 69, 70, 71
+        // Проверка на правила для полей 69, 70, 71
         if (currentPosition >= 69 && currentPosition < 72) {
             while (currentPosition < 72) {
                 diceRoll = Math.floor(Math.random() * 6) + 1;
-                animatedDice.setAttribute('data-roll', diceRoll); // Отображение текущей стороны кубика
+                animatedDice.setAttribute('data-roll', diceRoll);
                 logMove(diceRoll, `Бросаем для попадания на 72: ${diceRoll}`);
                 currentPosition += diceRoll;
                 if (currentPosition >= 72) {
@@ -169,19 +171,15 @@ animatedDice.addEventListener("click", function handleDiceClick() {
             }
         }
 
-        // Проверка завершения игры
+        // Проверка на завершение игры
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
-            animatedDice.removeEventListener("click", handleDiceClick); // Отключаем обработчик после завершения
+            rollDice.disabled = true;
         }
     }
 
     movePlayer(currentPosition);
 });
-
-// Добавление обработчика клика
-animatedDice.addEventListener("click", handleDiceClick);
-
 
 // Логирование хода игрока
 function logMove(diceRoll, description) {
@@ -201,16 +199,9 @@ restartGame.addEventListener("click", () => {
     rollDice.disabled = false; // Активируем кнопку броска кубика
 });
 
-// Установить темную тему по умолчанию
-window.addEventListener("load", () => {
-    const isDark = localStorage.getItem("darkTheme") === "true";
-    themeToggle.checked = isDark;
-    applyTheme(isDark);
-});
-
-// Применение темы
-function applyTheme(isDark) {
-    if (isDark) {
+// Переключение темы оформления
+themeToggle.addEventListener("change", () => {
+    if (themeToggle.checked) {
         document.documentElement.style.setProperty('--background-color-light', '#333');
         document.documentElement.style.setProperty('--text-color-light', '#fff');
         document.documentElement.style.setProperty('--primary-color-light', '#5a9');
@@ -219,11 +210,4 @@ function applyTheme(isDark) {
         document.documentElement.style.setProperty('--text-color-light', '#000');
         document.documentElement.style.setProperty('--primary-color-light', '#007bff');
     }
-}
-
-// Переключение темы
-themeToggle.addEventListener("change", () => {
-    const isDark = themeToggle.checked;
-    localStorage.setItem("darkTheme", isDark); // Сохранить выбранную тему
-    applyTheme(isDark);
 });

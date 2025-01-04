@@ -1,226 +1,212 @@
 :root {
-    --background-color-light: #f4f4f4; /* Цвет фона для светлой темы */
-    --text-color-light: #000; /* Цвет текста для светлой темы */
-    --background-color-dark: #333; /* Цвет фона для темной темы */
-    --text-color-dark: #fff; /* Цвет текста для темной темы */
-    --primary-color-light: #007bff; /* Основной цвет для светлой темы */
-    --primary-color-dark: #5a9; /* Основной цвет для темной темы */
+    --background-color-light: #f4f4f4;
+    --text-color-light: #000;
+    --background-color-dark: #333;
+    --text-color-dark: #fff;
+    --primary-color-light: #007bff;
+    --primary-color-dark: #5a9;
 }
 
 body {
-    font-family: Arial, sans-serif; /* Основной шрифт для текста */
-    margin: 0; /* Убираем внешние отступы */
-    padding: 0; /* Убираем внутренние отступы */
-    display: flex; /* Используем Flexbox для выравнивания содержимого */
-    flex-direction: column; /* Выравниваем элементы по вертикали */
-    align-items: center; /* Центрируем элементы по горизонтали */
-    justify-content: center; /* Центрируем элементы по вертикали */
-    background-image: url('back.png'); /* Устанавливаем изображение как фон */
-    background-repeat: no-repeat; /* Отключаем повторение фонового изображения */
-    background-size: cover; /* Растягиваем изображение по всему экрану */
-    background-position: center; /* Центрируем фон */
-    background-color: var(--background-color-light); /* Фоновый цвет для текущей темы */
-    color: var(--text-color-light); /* Цвет текста для текущей темы */
-    transition: background-color 0.3s, color 0.3s; /* Плавный переход при смене темы */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('back.png'); /* Устанавливаем фоновое изображение */
+    background-repeat: no-repeat;
+    background-size: cover; /* Изображение растягивается по всему экрану */
+    background-position: center; /* Центрируем изображение */
+    background-color: var(--background-color-light); /* Фон для темы */
+    color: var(--text-color-light); /* Цвет текста */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход между темами */
 }
 
 .board-container {
-    position: relative; /* Для размещения элементов внутри контейнера */
-    width: 90vmin; /* Задаем ширину относительно минимального размера окна */
-    height: 90vmin; /* Задаем высоту аналогично ширине */
-    background: url('background.webp') no-repeat center center; /* Фон игрового поля */
-    background-size: cover; /* Растягиваем фон поля */
-    border: 2px solid var(--text-color-light); /* Граница в цвет текста */
+    position: relative;
+    width: 90vmin;
+    height: 90vmin;
+	background: url('background.webp') no-repeat center center;
+    background-size: cover;
+    border: 2px solid var(--text-color-light);
 }
 
 .game-version {
-    position: fixed; /* Фиксируем текст в одном месте */
-    bottom: 10px; /* Отступ от нижнего края */
-    left: 50%; /* Центрируем по горизонтали */
-    transform: translateX(-50%); /* Сдвигаем элемент на 50% влево для выравнивания */
-    font-size: 12px; /* Размер текста */
-    color: #555; /* Цвет текста для версии */
-    text-align: center; /* Выравнивание текста по центру */
-    z-index: 1000; /* Приоритет отрисовки */
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #555; /* Можно изменить на подходящий цвет */
+    text-align: center;
+    z-index: 1000;
 }
 
 .board {
-    display: grid; /* Сетка для размещения ячеек */
-    grid-template-columns: repeat(9, 1fr); /* 9 столбцов одинаковой ширины */
-    grid-template-rows: repeat(8, 1fr); /* 8 строк одинаковой высоты */
-    gap: 0; /* Убираем расстояния между ячейками */
-    position: absolute; /* Абсолютное позиционирование */
-    width: 100%; /* Ширина совпадает с контейнером */
-    height: 100%; /* Высота совпадает с контейнером */
-    background: rgba(255, 255, 255, 0.2); /* Прозрачный белый фон для ячеек */
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .board::before {
-    content: ""; /* Псевдоэлемент для создания линий сетки */
-    position: absolute; /* Абсолютное позиционирование внутри контейнера */
-    top: 0; /* От верхнего края */
-    left: 0; /* От левого края */
-    right: 0; /* До правого края */
-    bottom: 0; /* До нижнего края */
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px), 
-                      linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px); 
-                      /* Создание сетки с прозрачными линиями */
-    background-size: calc(100% / 9) calc(100% / 8); /* Размеры клеток сетки */
-    pointer-events: none; /* Скрывает элемент от взаимодействия с мышью */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: calc(100% / 9) calc(100% / 8);
+    pointer-events: none;
 }
 
 .cell {
-    display: flex; /* Используется для центрирования содержимого */
-    flex-direction: column; /* Элементы размещаются вертикально */
-    align-items: center; /* Центрирование содержимого по горизонтали */
-    justify-content: center; /* Центрирование содержимого по вертикали */
-    text-align: center; /* Выравнивание текста в центре */
-    padding: 5%; /* Внутренние отступы */
-    font-size: 1vmin; /* Размер шрифта относительно окна */
-    font-weight: bold; /* Полужирное начертание текста */
-    color: #fff; /* Цвет текста */
-    text-shadow: 1px 1px 2px #000; /* Тень для улучшения читаемости */
-    background: rgba(0, 0, 0, 0.3); /* Прозрачный фон для клеток */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5%;
+    font-size: 1vmin;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .cell span {
-    font-size: 1.6vmin; /* Увеличенный размер шрифта для чисел */
+    font-size: 1.6vmin;
 }
 
 .player {
-    width: 40px; /* Ширина фишки */
-    height: 40px; /* Высота фишки */
-    background-color: rgba(255, 0, 0, 0.5); /* Полупрозрачный красный цвет */
-    border-radius: 50%; /* Делает фишку круглой */
-    position: absolute; /* Позиционируется относительно контейнера */
-    transform: translate(-50%, -50%); /* Центрирование по оси X и Y */
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 0, 0, 0.5);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
 
 .controls {
-    margin-top: 10px; /* Отступ сверху */
-    text-align: center; /* Выравнивание элементов управления по центру */
+    margin-top: 10px;
+    text-align: center;
 }
 
 .dice {
-    font-size: 20px; /* Размер текста */
-    cursor: pointer; /* Указатель показывает, что элемент кликабельный */
-    padding: 10px 20px; /* Внутренние отступы */
-    background-color: var(--primary-color-light); /* Основной цвет кнопки */
-    color: var(--text-color-light); /* Цвет текста на кнопке */
-    border: none; /* Убираем рамку */
-    border-radius: 5px; /* Закругленные углы */
-}
-
-#diceContainer {
-    margin-top: 20px; /* Отступ сверху */
-    display: flex; /* Используется для выравнивания кубика */
-    justify-content: center; /* Центрируем кубик */
-    cursor: pointer; /* Указывает, что кубик кликабельный */
-}
-
-#animatedDice {
-    width: 80px; /* Размер кубика */
-    height: 80px; /* Высота кубика */
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: var(--primary-color-light);
+    color: var(--text-color-light);
+    border: none;
+    border-radius: 5px;
 }
 
 .dice:hover {
-    background-color: #0056b3; /* Цвет кнопки при наведении */
+    background-color: #0056b3;
 }
 
 .log {
-    max-width: 90vmin; /* Максимальная ширина лога */
-    margin-top: 10px; /* Отступ сверху */
-    text-align: left; /* Текст выравнивается по левому краю */
-    font-size: 16px; /* Размер текста */
-    overflow-y: auto; /* Скроллинг по вертикали при переполнении */
-    height: 150px; /* Высота лога */
-    border: 1px solid var(--text-color-dark); /* Рамка цвета текста */
-    padding: 5px; /* Внутренние отступы */
-    background: var(--background-color-light); /* Фон для темы */
+    max-width: 90vmin;
+    margin-top: 10px;
+    text-align: left;
+    font-size: 16px;
+    overflow-y: auto;
+    height: 150px;
+    border: 1px solid var(--text-color-dark);
+    padding: 5px;
+    background: var(--background-color-light);
 }
 
 .log-table {
-    width: 100%; /* Устанавливает ширину таблицы равной 100% от родительского контейнера */
-    border-collapse: collapse; /* Убирает промежутки между границами ячеек */
-    text-align: left; /* Выравнивание текста в ячейках по левому краю */
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
 }
 
 .log-table th, .log-table td {
-    border: 1px solid #ddd; /* Устанавливает цвет границы ячеек */
-    padding: 8px; /* Добавляет внутренние отступы для удобства чтения */
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 .log-table th {
-    background-color: var(--primary-color-light); /* Использует основной цвет темы для фона заголовков */
-    color: var(--text-color-light); /* Использует цвет текста в зависимости от темы */
+    background-color: var(--primary-color-light);
+    color: var(--text-color-light);
 }
 
 .restart-button {
-    font-size: 16px; /* Размер текста кнопки */
-    padding: 10px 20px; /* Внутренние отступы кнопки */
-    margin-bottom: 10px; /* Отступ снизу */
-    background-color: #28a745; /* Устанавливает зеленый фон для кнопки */
-    color: white; /* Устанавливает белый цвет текста */
-    border: none; /* Убирает границу кнопки */
-    border-radius: 5px; /* Скругляет углы кнопки */
-    cursor: pointer; /* Указывает, что элемент кликабельный */
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .restart-button:hover {
-    background-color: #218838; /* Изменяет фон кнопки при наведении */
+    background-color: #218838;
 }
 
 .theme-switcher {
-    position: absolute; /* Устанавливает абсолютное позиционирование */
-    top: 10px; /* Расположение от верхнего края */
-    right: 10px; /* Расположение от правого края */
-    font-size: 16px; /* Размер текста переключателя */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
 }
 
 /* Стили для 3D кубика */
 .gen-container {
-    display: inline-block; /* Располагает контейнер в одну строку с другими элементами */
-    margin-top: 10px; /* Отступ сверху */
-    position: relative; /* Относительное позиционирование для вложенных элементов */
-    width: 80px; /* Ширина контейнера */
-    height: 80px; /* Высота контейнера */
-    perspective: 600px; /* Устанавливает перспективу для 3D эффекта */
-    margin-left: 20px; /* Отступ слева */
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    perspective: 600px;
+    margin-left: 20px;
 }
 
 .contain-dice-6 {
-    width: 100%; /* Занимает всю ширину контейнера */
-    height: 100%; /* Занимает всю высоту контейнера */
-    position: relative; /* Относительное позиционирование для вложенных элементов */
-    transform-style: preserve-3d; /* Сохраняет 3D-пространство для вложенных элементов */
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
 .dice-6 {
-    width: 100%; /* Ширина кубика равна ширине контейнера */
-    height: 100%; /* Высота кубика равна высоте контейнера */
-    position: absolute; /* Абсолютное позиционирование для вращения */
-    transform-style: preserve-3d; /* Сохраняет 3D-пространство */
-    transition: transform 0.6s ease; /* Добавляет плавный переход для вращения */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
 }
 
 .die-list {
-    width: 100%; /* Ширина списка граней кубика */
-    height: 100%; /* Высота списка граней кубика */
-    margin: 0; /* Убирает внешние отступы */
-    padding: 0; /* Убирает внутренние отступы */
-    list-style: none; /* Убирает маркеры списка */
-    position: relative; /* Относительное позиционирование */
-    transform-style: preserve-3d; /* Сохраняет 3D-пространство */
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    transform-style: preserve-3d;
 }
 
 .die-item {
-    position: absolute; /* Абсолютное позиционирование для каждой грани кубика */
-    width: 100%; /* Ширина грани равна ширине контейнера */
-    height: 100%; /* Высота грани равна высоте контейнера */
-    backface-visibility: hidden; /* Скрывает обратную сторону грани */
-    background: #fff; /* Белый фон грани */
-    border: 2px solid #000; /* Черная граница грани */
-    box-sizing: border-box; /* Включает границы и отступы в общую ширину и высоту */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: #fff;
+    border: 2px solid #000;
+    box-sizing: border-box;
 }
 
 .die-item[data-side="1"] { transform: rotateX(0deg) translateZ(40px); }
@@ -231,11 +217,11 @@ body {
 .die-item[data-side="6"] { transform: rotateX(90deg) translateZ(40px); }
 
 .dot {
-    position: absolute; /* Абсолютное позиционирование для точек на гранях */
-    width: 12px; /* Размер точки */
-    height: 12px; /* Высота точки */
-    border-radius: 50%; /* Круглая форма точки */
-    background: #000; /* Черный цвет точки */
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #000;
 }
 
 /* Расположение точек для каждой грани */
@@ -274,8 +260,3 @@ body {
 .die-list[data-roll="3"] { transform: rotateY(90deg); }
 .die-list[data-roll="6"] { transform: rotateX(-90deg); }
 .die-list[data-roll="5"] { transform: rotateX(90deg); }
-
-body.dark-theme {
-    background-color: #333; /* Темный фон для темной темы */
-    color: #fff; /* Белый текст для темной темы */
-}
