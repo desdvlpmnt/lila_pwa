@@ -208,9 +208,8 @@ body {
     border: 2px solid #191919; /* Цвет границы кубика */
     border-radius: 15px; /* Закругленные углы, если нужны */
     box-sizing: border-box;
+    transform: translateZ(40px); /* Позиционируем грани в 3D-пространстве */
 }
-
-
 
 .die-item[data-side="1"] { transform: rotateX(0deg) translateZ(40px); }
 .die-item[data-side="2"] { transform: rotateY(180deg) translateZ(40px); }
@@ -221,10 +220,11 @@ body {
 
 .dot {
     position: absolute;
-    width: 12px;
+    width: 12px; /* Размер точки */
     height: 12px;
-    border-radius: 50%;
-    background: #000;
+    border-radius: 50%; /* Круглая форма */
+    background: radial-gradient(circle, #000 60%, #333); /* Градиент для вдавленного вида */
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.5); /* Внутренняя тень */
 }
 
 /* Расположение точек для каждой грани */
