@@ -55,6 +55,14 @@ const restartGame = document.getElementById("restartGame");
 const themeToggle = document.getElementById("themeToggle");
 const animatedDice = document.getElementById("animatedDice");
 
+// Установить темную тему по умолчанию
+window.addEventListener("load", () => {
+    themeToggle.checked = true;
+    document.documentElement.style.setProperty('--background-color-light', '#333');
+    document.documentElement.style.setProperty('--text-color-light', '#fff');
+    document.documentElement.style.setProperty('--primary-color-light', '#5a9');
+});
+
 // Массив названий клеток игрового поля
 const cellNames = [
     "Земля", "Желание", "Гнев", "Жадность", "Дисциплина", "Вожделение", "Обман", "Праведность", "Милосердие",
@@ -204,12 +212,12 @@ restartGame.addEventListener("click", () => {
 // Переключение темы оформления
 themeToggle.addEventListener("change", () => {
     if (themeToggle.checked) {
-        document.documentElement.style.setProperty('--background-color-light', '#333');
-        document.documentElement.style.setProperty('--text-color-light', '#fff');
-        document.documentElement.style.setProperty('--primary-color-light', '#5a9');
+        document.documentElement.style.setProperty('--background-color-light', '#333'); // Установка темного фона
+        document.documentElement.style.setProperty('--text-color-light', '#fff'); // Белый текст
+        document.documentElement.style.setProperty('--primary-color-light', '#5a9'); // Основной цвет темной темы
     } else {
-        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
-        document.documentElement.style.setProperty('--text-color-light', '#000');
-        document.documentElement.style.setProperty('--primary-color-light', '#007bff');
+        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4'); // Установка светлого фона
+        document.documentElement.style.setProperty('--text-color-light', '#000'); // Черный текст
+        document.documentElement.style.setProperty('--primary-color-light', '#007bff'); // Основной цвет светлой темы
     }
 });
