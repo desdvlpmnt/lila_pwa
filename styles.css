@@ -113,7 +113,6 @@ body {
     background-color: #0056b3;
 }
 
-<<<<<<< HEAD
 .dice-container {
     position: fixed;
     top: 50%;
@@ -129,8 +128,6 @@ body {
     margin-top: 10px;
 }
 
-=======
->>>>>>> parent of 7217a29 (Бросок через кубик)
 .log {
     max-width: 90vmin;
     margin-top: 10px;
