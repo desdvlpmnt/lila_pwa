@@ -1,4 +1,4 @@
-:root {
+:root { /* Тема */
     --background-color-light: #333; /* Тёмный фон теперь светлая тема */
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
     --background-color-dark: #f4f4f4; /* Светлый фон теперь тёмная тема */
@@ -7,7 +7,14 @@
     --primary-color-dark: #007bff; /* Цвет основной кнопки для новой "тёмной темы" */
 }
 
-body {
+.theme-switcher { /* Переключатель темы */
+    position: absolute; /* Абсолютное позиционирование элемента */
+    top: 10px; /* Отступ сверху от родителя */
+    right: 10px; /* Отступ справа от родителя */
+    font-size: 16px; /* Размер шрифта элемента */
+}
+
+body { /* Основной экран */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -24,47 +31,47 @@ body {
     transition: background-color 0.3s, color 0.3s; /* Плавный переход между темами */
 }
 
-.board-container {
-    position: relative;
-    width: 90vmin;
-    height: 90vmin;
-	background: url('background.webp') no-repeat center center;
-    background-size: cover;
-    border: 2px solid var(--text-color-light);
+.game-version { /* Номер версии */
+    position: absolute; /* Устанавливаем абсолютное позиционирование */
+    top: 10px; /* Отступ от верхнего края */
+    left: 20px; /* Отступ от левого края */
+    font-size: 12px; /* Размер шрифта */
+    color: #555; /* Цвет текста */
+    padding: 5px 10px; /* Внутренние отступы */
+    border-radius: 5px; /* Скругленные углы */
+    z-index: 1000; /* Поверх других элементов */
 }
 
-.game-version {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    color: #555; /* Можно изменить на подходящий цвет */
-    text-align: center;
-    z-index: 1000;
+.board-container { /* Доска */
+    position: relative; /* Устанавливает положение контейнера относительно его ближайшего позиционированного предка */
+    width: 90vmin; /* Устанавливает ширину контейнера в 90% от меньшей стороны экрана */
+    height: 90vmin; /* Устанавливает высоту контейнера в 90% от меньшей стороны экрана */
+	background: url('background.webp') no-repeat center center; /* Устанавливает фоновое изображение без повторения, центрируя его */
+    background-size: cover; /* Изображение растягивается, чтобы покрыть весь контейнер */
+    border: 2px solid var(--text-color-light); /* Задает рамку контейнера с использованием переменной цвета текста для светлой темы */
 }
 
-.board {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    gap: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
+.board { /* Доска деление */
+    display: grid; /* Использует CSS Grid Layout для упрощения размещения элементов */
+    grid-template-columns: repeat(9, 1fr); /* Делит контейнер на 9 равных колонок */
+    grid-template-rows: repeat(8, 1fr); /* Делит контейнер на 8 равных строк */
+    gap: 0; /* Убирает отступы между элементами сетки */
+    position: absolute; /* Абсолютное позиционирование внутри родительского элемента */
+    width: 100%; /* Ширина элемента занимает 100% от родительского контейнера */
+    height: 100%; /* Высота элемента занимает 100% от родительского контейнера */
+    background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон для сетки */
 }
 
-.board::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-    background-size: calc(100% / 9) calc(100% / 8);
-    pointer-events: none;
+.board::before { /* Доска элементы */
+    content: ""; /* Добавляет псевдоэлемент перед содержимым .board */
+    position: absolute; /* Абсолютное позиционирование внутри элемента .board */
+    top: 0; /* Располагает верхнюю границу псевдоэлемента у верхней границы родителя */
+    left: 0; /* Располагает левую границу псевдоэлемента у левой границы родителя */
+    right: 0; /* Располагает правую границу псевдоэлемента у правой границы родителя */
+    bottom: 0; /* Располагает нижнюю границу псевдоэлемента у нижней границы родителя */
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px); /* Добавляет две перекрещивающиеся сетки для создания эффекта линий */
+    background-size: calc(100% / 9) calc(100% / 8); /* Размер ячеек сетки соответствует количеству колонок и строк */
+    pointer-events: none; /* Отключает возможность взаимодействия с псевдоэлементом (например, клики) */
 }
 
 .cell {
@@ -86,81 +93,60 @@ body {
 }
 
 .player {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(229, 255, 0, 0.696);
-    border-radius: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
+    width: 40px; /* Устанавливает ширину игрока */
+    height: 40px; /* Устанавливает высоту игрока */
+    background-color: rgba(229, 255, 0, 0.696); /* Полупрозрачный желтый цвет для игрока */
+    border-radius: 50%; /* Делает игрока кругом */
+    position: absolute; /* Абсолютное позиционирование для точного размещения */
+    transform: translate(-50%, -50%); /* Центрирует элемент относительно своей позиции */
 }
 
 .controls {
-    margin-top: 10px;
-    text-align: center;
+    margin-top: 10px; /* Отступ сверху для отделения от других элементов */
+    text-align: center; /* Центрирует содержимое элемента */
 }
 
-.dice {
-    font-size: 20px;
-    cursor: pointer;
-    padding: 10px 20px;
-    background-color: var(--primary-color-light);
-    color: var(--text-color-light);
-    border: none;
-    border-radius: 5px;
+.log { /* История логи */
+    max-width: 90vmin; /* Устанавливает максимальную ширину лога */
+    margin-top: 10px; /* Отступ сверху для отделения от других элементов */
+    text-align: left; /* Выравнивает текст по левому краю */
+    font-size: 16px; /* Размер шрифта для текста */
+    overflow-y: auto; /* Добавляет прокрутку по вертикали, если содержимое превышает высоту */
+    height: 150px; /* Устанавливает фиксированную высоту для лога */
+    border: 1px solid var(--text-color-dark); /* Рамка с использованием темного цвета текста */
+    padding: 5px; /* Внутренние отступы вокруг текста */
+    background: var(--background-color-light); /* Фон с использованием переменной темы */
 }
 
-.dice:hover {
-    background-color: #0056b3;
+.log-table { /* История логи1 */
+    width: 100%; /* Таблица занимает всю ширину родителя */
+    border-collapse: collapse; /* Убирает промежутки между границами ячеек */
+    text-align: left; /* Выравнивание текста по левому краю */
 }
 
-.log {
-    max-width: 90vmin;
-    margin-top: 10px;
-    text-align: left;
-    font-size: 16px;
-    overflow-y: auto;
-    height: 150px;
-    border: 1px solid var(--text-color-dark);
-    padding: 5px;
-    background: var(--background-color-light);
+.log-table th, .log-table td { /* История логи2 */
+    border: 1px solid #ddd; /* Легкие серые границы вокруг ячеек */
+    padding: 8px; /* Внутренние отступы внутри ячеек */
 }
 
-.log-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+.log-table th { /* История логи3 */
+    background-color: var(--primary-color-light); /* Фон заголовков таблицы с использованием переменной темы */
+    color: var(--text-color-light); /* Цвет текста заголовков */
 }
 
-.log-table th, .log-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.restart-button { /* Начать заново кнопка */
+    font-size: 16px; /* Размер шрифта кнопки */
+    padding: 10px 20px; /* Внутренние отступы для кнопки */
+    margin-bottom: 10px; /* Отступ снизу для отделения от других элементов */
+    background-color: #28a745; /* Зеленый фон кнопки */
+    color: white; /* Белый текст кнопки */
+    border: none; /* Убирает стандартную рамку кнопки */
+    border-radius: 5px; /* Закругленные углы кнопки */
+    cursor: pointer; /* Указывает, что кнопка кликабельна */
 }
 
-.log-table th {
-    background-color: var(--primary-color-light);
-    color: var(--text-color-light);
-}
-
-.restart-button {
-    font-size: 16px;
-    padding: 10px 20px;
-    margin-bottom: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.restart-button:hover {
-    background-color: #218838;
-}
-
-.theme-switcher {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 16px;
+.restart-button:hover { /* Меняет фон кнопки при наведении */
+    background-color: #218838; 
 }
 
 /* Стили для 3D кубика */
@@ -179,6 +165,20 @@ body {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
+}
+
+.dice {
+    font-size: 20px; /* Устанавливает размер шрифта для текста внутри кнопки */
+    cursor: pointer; /* Указывает, что элемент кликабельный */
+    padding: 10px 20px; /* Добавляет внутренние отступы вокруг текста */
+    background-color: var(--primary-color-light); /* Задает фон кнопки с использованием переменной темы */
+    color: var(--text-color-light); /* Цвет текста кнопки */
+    border: none; /* Убирает стандартную рамку кнопки */
+    border-radius: 5px; /* Закругленные углы для кнопки */
+}
+
+.dice:hover {
+    background-color: #0056b3; /* Меняет фон кнопки при наведении */
 }
 
 .dice-6 {
@@ -252,8 +252,8 @@ body {
 
 .die-list { transition: transform 0.6s ease; }
 
-/* Анимация броска */
-.die-list {
+
+.die-list { /* Анимация броска */
     transition: transform 0.6s ease; /* Добавляет плавный переход для вращения кубика */
 }
 
@@ -264,7 +264,7 @@ body {
 .die-list[data-roll="6"] { transform: rotateX(-90deg); }
 .die-list[data-roll="5"] { transform: rotateX(90deg); }
 
-.trail {
+.trail { /* Шлейф после броска */
     width: 40px; /* Размер шлейфа совпадает с размером игрока */
     height: 40px;
     background-color: rgba(255, 183, 0, 0.3); /* Полупрозрачный красный цвет */
@@ -284,18 +284,7 @@ body {
     }
 }
 
-.game-version {
-    position: absolute; /* Устанавливаем абсолютное позиционирование */
-    top: 10px; /* Отступ от верхнего края */
-    left: 50px; /* Отступ от левого края */
-    font-size: 12px; /* Размер шрифта */
-    color: #555; /* Цвет текста */
-    padding: 5px 10px; /* Внутренние отступы */
-    border-radius: 5px; /* Скругленные углы */
-    z-index: 1000; /* Поверх других элементов */
-}
-
-.footer {
+.footer { /* Футер*/
     display: flex; /* Располагаем кнопки горизонтально */
     justify-content: space-around; /* Равномерное распределение кнопок */
     align-items: center; /* Центрируем элементы по вертикали */
@@ -308,7 +297,7 @@ body {
     z-index: 100; /* Поверх остального контента */
 }
 
-.footer-button {
+.footer-button { /* Кнопки футера */
     display: flex; /* Располагаем иконку и текст горизонтально */
     flex-direction: column; /* Переводим их в столбец */
     align-items: center; /* Центрируем по горизонтали */
@@ -317,13 +306,13 @@ body {
     cursor: pointer; /* Указатель при наведении */
 }
 
-.footer-icon {
+.footer-icon { /* Иконки футера */
     width: 24px; /* Задаем размер иконки */
     height: 24px; /* Задаем размер иконки */
     margin-bottom: 5px; /* Отступ между иконкой и текстом */
 }
 
-.footer-button span {
+.footer-button span { /* Текст под иконками футера */
     font-size: 12px; /* Размер текста под иконкой */
     color: var(--text-color-light); /* Цвет текста соответствует текущей теме */
 }
