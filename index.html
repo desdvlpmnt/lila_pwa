@@ -9,12 +9,16 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="game-version">Версия 1.1.56.</div>
+    <div class="game-version">Версия 1.1.57.</div>
     <div class="theme-switcher">
-        <label>
-            <input type="checkbox" id="themeToggle"> Светлая тема
+        <label class="toggle">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider">
+                <img src="theme_icons/moon-02.svg" alt="Day" class="icon day-icon">
+                <img src="theme_icons/sun-02.svg" alt="Night" class="icon night-icon">
+            </span>
         </label>
-    </div>
+    </div>  
     <button class="restart-button" id="restartGame">Начать заново</button>
     <div class="board-container">
         <div class="board" id="board"></div>

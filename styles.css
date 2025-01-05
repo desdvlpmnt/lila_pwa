@@ -7,12 +7,78 @@
     --primary-color-dark: #007bff; /* Цвет основной кнопки для новой "тёмной темы" */
 }
 
+:root[data-theme="light"] {
+    --background-color-light: #f4f4f4;
+    --text-color-light: #000;
+    --primary-color-light: #007bff;
+}
+
+:root[data-theme="dark"] {
+    --background-color-light: #333;
+    --text-color-light: #fff;
+    --primary-color-light: #5a9;
+}
+
 .theme-switcher { /* Переключатель темы */
     position: absolute; /* Абсолютное позиционирование элемента */
     top: 10px; /* Отступ сверху от родителя */
     right: 10px; /* Отступ справа от родителя */
     font-size: 16px; /* Размер шрифта элемента */
 }
+
+.toggle { /* Переключатель темы */
+    position: relative; /* Относительное позиционирование для точного размещения дочерних элементов. */
+    display: inline-block;
+    width: 60px; /* Размер круга */
+    height: 60px; /* Размер круга */
+}
+
+.toggle input { /* Переключатель темы */
+    opacity: 0; /* Скрывает чекбокс */
+    width: 0;
+    height: 0;
+}
+
+.slider { /* Переключатель темы */
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: 30px; /* Размер круга */
+    height: 30px; /* Размер круга */
+    background-color: #ccc; /* Цвет по умолчанию */
+    border-radius: 50%; /* Делаем переключатель кругом */
+    display: flex;
+    align-items: center; /* Центрируем содержимое по вертикали */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    transition: background-color 0.4s; /* Плавный переход для смены цвета */
+}
+
+.slider .icon { /* Переключатель темы */
+    width: 24px; /* Размер иконок */
+    height: 24px;
+}
+
+.slider .day-icon { /* Переключатель темы */
+    display: block; /* Показываем иконку солнца по умолчанию */
+}
+
+.slider .night-icon { /* Переключатель темы */
+    display: none; /* Скрываем иконку луны по умолчанию */
+}
+
+.toggle input:checked + .slider { /* Переключатель темы */
+    background-color: #474747; /* Цвет для тёмной темы */
+}
+
+.toggle input:checked + .slider .day-icon { /* Переключатель темы */
+    display: none; /* Скрываем иконку солнца при включении */
+}
+
+.toggle input:checked + .slider .night-icon { /* Переключатель темы */
+    display: block; /* Показываем иконку луны при включении */
+}
+
 
 body { /* Основной экран */
     font-family: Arial, sans-serif;

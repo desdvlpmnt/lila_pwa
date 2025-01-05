@@ -225,7 +225,7 @@ restartGame.addEventListener("click", () => {
     rollDice.disabled = false; // Разрешаем бросать кубик
 });
 
-// Переключение темы оформления
+/* // Переключение темы оформления
 themeToggle.addEventListener("change", () => {
     if (themeToggle.checked) {
         document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
@@ -236,7 +236,7 @@ themeToggle.addEventListener("change", () => {
         document.documentElement.style.setProperty('--text-color-light', '#fff');
         document.documentElement.style.setProperty('--primary-color-light', '#5a9');
     }
-});
+}); */
 
 
 function movePlayer(position) {
@@ -261,3 +261,31 @@ function movePlayer(position) {
     player.style.left = `${x}%`;
     player.style.top = `${y}%`;
 }
+
+/* const themeToggle = document.getElementById('themeToggle');
+
+themeToggle.addEventListener('change', () => {
+    if (themeToggle.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+});
+ */
+
+// Переключение темы оформления
+themeToggle.addEventListener("change", () => {
+    if (themeToggle.checked) {
+        // Устанавливаем тёмную тему
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.style.setProperty("--background-color-light", "#333");
+        document.documentElement.style.setProperty("--text-color-light", "#fff");
+        document.documentElement.style.setProperty("--primary-color-light", "#5a9");
+    } else {
+        // Устанавливаем светлую тему
+        document.documentElement.setAttribute("data-theme", "light");
+        document.documentElement.style.setProperty("--background-color-light", "#f4f4f4");
+        document.documentElement.style.setProperty("--text-color-light", "#000");
+        document.documentElement.style.setProperty("--primary-color-light", "#007bff");
+    }
+});
