@@ -386,3 +386,66 @@ body { /* Основной экран */
     font-size: 12px; /* Размер текста под иконкой */
     color: var(--text-color-light); /* Цвет текста соответствует текущей теме */
 }
+
+/* Основной стиль модального окна */
+.modal {
+    position: fixed;
+    bottom: -100%; /* Скрыто за пределами экрана */
+    left: 0;
+    width: 100%;
+    height: 75vh; /* Высота окна 75% от высоты экрана */
+    background-color: rgb(246, 246, 246); /* Светло-серый фон окна */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Тень для эффекта подъёма */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transition: bottom 0.3s ease-in-out; /* Анимация появления */
+    z-index: 1000; /* Поверх overlay */
+    display: flex; /* Flexbox для управления размещением */
+    flex-direction: column; /* Элементы располагаются вертикально */
+}
+
+/* Содержимое модального окна */
+.modal-content {
+    padding: 20px;
+    text-align: center;
+    flex: 1; /* Занимает всё доступное пространство, оставляя место для кнопки */
+    overflow-y: auto; /* Прокрутка содержимого, если его больше окна */
+    z-index: 2; /* Поверх overlay */
+}
+
+/* Кнопка "Свернуть" */
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin: 10px auto; /* Центрируем кнопку горизонтально */
+    display: block;
+    text-align: center;
+    align-self: center; /* Центрируем кнопку внутри flex-контейнера */
+    z-index: 2; /* Поверх overlay */
+}
+
+/* Затемнение фона (overlay) */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный тёмный фон */
+    z-index: 1; /* Под контентом модального окна */
+}
+
+/* Затемнение фона при открытом модальном окне */
+body.modal-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон при открытии модального окна */
+    z-index: 999; /* Затемнение под модальным окном */
+}

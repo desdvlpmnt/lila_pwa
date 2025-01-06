@@ -113,11 +113,6 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         const messageElement = document.getElementById("message") || createMessageElement(); // Создаем или используем существующее сообщение
         let diceRoll = Math.floor(Math.random() * 6) + 1;
 
-        // Включаем вибрацию при броске кубика
-        if (navigator.vibrate) {
-            navigator.vibrate(200); // Вибрация на 200 миллисекунд
-        }
-
         animatedDice.setAttribute('data-roll', diceRoll); // Обновляем анимацию кубика
         logMove(diceRoll, `Бросок: ${diceRoll}`);
 
@@ -294,3 +289,27 @@ themeToggle.addEventListener("change", () => {
         document.documentElement.style.setProperty("--primary-color-light", "#007bff");
     }
 });
+
+const historyButton = document.querySelector('.footer-button:nth-child(2)'); // Кнопка "История"
+const historyModal = document.getElementById('historyModal');
+const closeModal = document.getElementById('closeModal');
+const modalOverlay = document.querySelector('.modal-overlay'); // Overlay (тёмный фон)
+
+// Открытие модального окна
+historyButton.addEventListener('click', () => {
+    historyModal.style.bottom = '0'; // Показываем модальное окно
+    document.body.classList.add('modal-open'); // Блокируем скролл фона
+});
+
+// Закрытие модального окна при нажатии на кнопку "Свернуть"
+closeModal.addEventListener('click', () => {
+    historyModal.style.bottom = '-100%'; // Скрываем модальное окно
+    document.body.classList.remove('modal-open'); // Убираем блокировку скролла
+});
+
+// Закрытие модального окна при нажатии на overlay (тёмный фон)
+modalOverlay.addEventListener('click', () => {
+    historyModal.style.bottom = '-100%'; // Скрываем модальное окно
+    document.body.classList.remove('modal-open'); // Убираем блокировку скролла
+});
+
