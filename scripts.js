@@ -113,6 +113,11 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         const messageElement = document.getElementById("message") || createMessageElement(); // Создаем или используем существующее сообщение
         let diceRoll = Math.floor(Math.random() * 6) + 1;
 
+        // Включаем вибрацию при броске кубика
+        if (navigator.vibrate) {
+            navigator.vibrate(200); // Вибрация на 200 миллисекунд
+        }
+
         animatedDice.setAttribute('data-roll', diceRoll); // Обновляем анимацию кубика
         logMove(diceRoll, `Бросок: ${diceRoll}`);
 
