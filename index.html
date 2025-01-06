@@ -9,7 +9,7 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="game-version">Версия 1.1.63.</div>
+    <div class="game-version">Версия 1.1.70.</div>
     <div class="theme-switcher">
         <label class="toggle">
             <input type="checkbox" id="themeToggle">
@@ -62,18 +62,23 @@
         </button>
     </div>       
     <footer class="footer">
-        <button class="footer-button">
+        <!-- Кнопка "Домой" -->
+        <button class="footer-button" id="homeButton">
             <img src="footer_icons/home-04.svg" alt="Домой" class="footer-icon">
             <span>Домой</span>
         </button>
-        <button class="footer-button">
+    
+        <!-- Кнопка "История" -->
+        <button class="footer-button" id="historyButton">
             <img src="footer_icons/mail-05.svg" alt="История" class="footer-icon">
             <span>История</span>
         </button>
-        <button class="footer-button">
+    
+        <!-- Кнопка "Профиль" -->
+        <button class="footer-button" id="profileButton">
             <img src="footer_icons/user-profile-circle.svg" alt="Профиль" class="footer-icon">
             <span>Профиль</span>
         </button>
-    </footer>  
+    </footer>
 </body>
 </html>

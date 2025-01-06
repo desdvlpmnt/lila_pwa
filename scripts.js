@@ -281,12 +281,16 @@ themeToggle.addEventListener("change", () => {
         document.documentElement.style.setProperty("--background-color-light", "#333");
         document.documentElement.style.setProperty("--text-color-light", "#fff");
         document.documentElement.style.setProperty("--primary-color-light", "#5a9");
+        document.documentElement.style.setProperty("--footer-bg-light", "#474747");
+        document.documentElement.style.setProperty("--footer-text-light", "#fff")
     } else {
         // Устанавливаем светлую тему
         document.documentElement.setAttribute("data-theme", "light");
         document.documentElement.style.setProperty("--background-color-light", "#f4f4f4");
         document.documentElement.style.setProperty("--text-color-light", "#000");
         document.documentElement.style.setProperty("--primary-color-light", "#007bff");
+        document.documentElement.style.setProperty("--footer-bg-light", "#ccc");
+        document.documentElement.style.setProperty("--footer-text-light", "#333");
     }
 });
 

@@ -5,6 +5,8 @@
     --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */
     --primary-color-light: #5a9; /* Цвет основной кнопки для новой "светлой темы" */
     --primary-color-dark: #007bff; /* Цвет основной кнопки для новой "тёмной темы" */
+    --modal-bg-light: #ffffff;
+    --modal-bg-dark: #333333;
 }
 
 :root[data-theme="light"] {
@@ -354,39 +356,56 @@ body { /* Основной экран */
     }
 }
 
-.footer { /* Футер*/
-    display: flex; /* Располагаем кнопки горизонтально */
+.footer {
+    position: fixed; /* Фиксируем футер внизу экрана */
+    bottom: 10px; /* Отступ от нижнего края экрана */
+    left: 50%; /* Центрируем футер по горизонтали */
+    transform: translateX(-50%); /* Для точного центрирования */
+    width: 85%; /* Задаём ширину футера */
+    height: 45px; /* Высота футера */
+    background-color: var(--footer-bg-light); /* Цвет по умолчанию */
+    color: var(--footer-text-light); /* Цвет текста по умолчанию */
+    border-radius: 30px; /* Закругляем углы */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+    display: flex; /* Flexbox для размещения содержимого */
     justify-content: space-around; /* Равномерное распределение кнопок */
-    align-items: center; /* Центрируем элементы по вертикали */
-    padding: 10px 0; /* Отступы сверху и снизу */
-    background-color: rgba(0, 0, 0, 0.1); /* Темная заливка, на 5% темнее основного цвета */
-    border-top: 1px solid rgba(0, 0, 0, 0.2); /* Линия для отделения футера */
-    position: fixed; /* Закрепляем футер */
-    bottom: 0; /* Располагаем его снизу экрана */
-    width: 100%; /* Футер растягивается на весь экран */
-    z-index: 500; /* Поверх остального контента */
+    align-items: center; /* Центрируем кнопки по вертикали */
+    z-index: 100; /* Поверх других элементов */
+/* padding: 0 10px; /* Внутренние отступы */
+    transition: background-color 0.4s, color 0.4s; /* Плавный переход для цвета */
+
 }
 
-.footer-button { /* Кнопки футера */
-    display: flex; /* Располагаем иконку и текст горизонтально */
-    flex-direction: column; /* Переводим их в столбец */
-    align-items: center; /* Центрируем по горизонтали */
-    border: none; /* Убираем рамки кнопок */
-    background: none; /* Прозрачный фон */
-    cursor: pointer; /* Указатель при наведении */
+.footer-button {
+    background: none; /* Убираем стандартный фон кнопок */
+    border: none; /* Убираем рамку кнопок */
+    cursor: pointer; /* Указатель мыши при наведении */
+    text-align: center; /* Текст под иконкой */
+    display: flex; /* Flexbox для расположения текста и иконки */
+    flex-direction: column; /* Иконка сверху, текст снизу */
+    align-items: center; /* Центрируем содержимое кнопки */
+    justify-content: center; /* Центрируем содержимое кнопки */
+    font-size: 12px; /* Размер текста */
+    color: inherit; /* Используем цвет текста футера */
 }
 
-.footer-icon { /* Иконки футера */
-    width: 24px; /* Задаем размер иконки */
-    height: 24px; /* Задаем размер иконки */
-    margin-bottom: 5px; /* Отступ между иконкой и текстом */
+.footer-icon {
+    width: 20px; /* Ширина иконки */
+    height: 20px; /* Высота иконки */
+    margin-bottom: 4px; /* Отступ между иконкой и текстом */
 }
 
-.footer-button span { /* Текст под иконками футера */
-    font-size: 12px; /* Размер текста под иконкой */
-    color: var(--text-color-light); /* Цвет текста соответствует текущей теме */
+.footer-button span {
+    font-size: 10px; /* Размер текста под иконкой */
 }
 
+.modal {
+    background-color: var(--modal-bg-light);
+}
+
+body.dark-mode .modal {
+    background-color: var(--modal-bg-dark);
+}
 /* Основной стиль модального окна */
 .modal {
     position: fixed;
@@ -394,13 +413,14 @@ body { /* Основной экран */
     left: 0;
     width: 100%;
     height: 75vh; /* Высота окна 75% от высоты экрана */
-    background-color: rgb(246, 246, 246); /* Светло-серый фон окна */
+    background-color: rgb(240, 240, 240); /* Светло-серый фон окна */
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Тень для эффекта подъёма */
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     transition: bottom 0.3s ease-in-out; /* Анимация появления */
     z-index: 1000; /* Поверх overlay */
     display: flex; /* Flexbox для управления размещением */
+    overflow: hidden; /* Обрезает содержимое за закруглениями */
     flex-direction: column; /* Элементы располагаются вертикально */
 }
 
@@ -438,7 +458,7 @@ body { /* Основной экран */
     z-index: 1; /* Под контентом модального окна */
 }
 
-/* Затемнение фона при открытом модальном окне */
+Затемнение фона при открытом модальном окне
 body.modal-open::before {
     content: '';
     position: fixed;
