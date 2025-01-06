@@ -279,7 +279,7 @@ themeToggle.addEventListener("change", () => {
     if (themeToggle.checked) {
         // Устанавливаем тёмную тему
         document.documentElement.setAttribute("data-theme", "dark");
-        themeColorMeta.setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue('--theme-color-dark').trim());
+        themeColorMeta.setAttribute("content", "#474747");
         document.documentElement.style.setProperty("--background-color-light", "#333");
         document.documentElement.style.setProperty("--text-color-light", "#fff");
         document.documentElement.style.setProperty("--primary-color-light", "#5a9");
@@ -289,7 +289,7 @@ themeToggle.addEventListener("change", () => {
         // Устанавливаем светлую тему
         document.documentElement.setAttribute("data-theme", "light");
         document.documentElement.style.setProperty("--background-color-light", "#f4f4f4");
-        themeColorMeta.setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue('--theme-color-light').trim());
+        themeColorMeta.setAttribute("content", "#ccc"); 
         document.documentElement.style.setProperty("--text-color-light", "#000");
         document.documentElement.style.setProperty("--primary-color-light", "#007bff");
         document.documentElement.style.setProperty("--footer-bg-light", "#ccc");
