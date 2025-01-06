@@ -295,21 +295,23 @@ const historyModal = document.getElementById('historyModal');
 const closeModal = document.getElementById('closeModal');
 const modalOverlay = document.querySelector('.modal-overlay'); // Overlay (тёмный фон)
 
+// Изначально скрываем кнопку "Свернуть"
+closeModal.style.display = 'none';
+
 // Открытие модального окна
 historyButton.addEventListener('click', () => {
     historyModal.style.bottom = '0'; // Показываем модальное окно
-    document.body.classList.add('modal-open'); // Блокируем скролл фона
+    closeModal.style.display = 'block'; // Показываем кнопку "Свернуть"
 });
 
 // Закрытие модального окна при нажатии на кнопку "Свернуть"
 closeModal.addEventListener('click', () => {
     historyModal.style.bottom = '-100%'; // Скрываем модальное окно
-    document.body.classList.remove('modal-open'); // Убираем блокировку скролла
+    closeModal.style.display = 'none'; // Скрываем кнопку "Свернуть"
 });
 
 // Закрытие модального окна при нажатии на overlay (тёмный фон)
 modalOverlay.addEventListener('click', () => {
     historyModal.style.bottom = '-100%'; // Скрываем модальное окно
-    document.body.classList.remove('modal-open'); // Убираем блокировку скролла
+    closeModal.style.display = 'none'; // Скрываем кнопку "Свернуть"
 });
-
