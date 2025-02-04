@@ -72,21 +72,26 @@
 }
 
 
-body { /* Основной экран */
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100vh; /* Делаем всю страницу на 100% высоты экрана */
+    width: 100vw;  /* Гарантируем полную ширину */
     margin: 0;
     padding: 0;
+}
+
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-image: url('back.png'); /* Устанавливаем фоновое изображение */
     background-repeat: no-repeat;
-    background-size: cover; /* Изображение растягивается по всему экрану */
+    background-size: cover; /* Фон заполняет весь экран */
     background-position: center; /* Центрируем изображение */
+    background-attachment: fixed; /* Фиксируем фон при прокрутке */
     background-color: var(--background-color-light); /* Фон для темы */
     color: var(--text-color-light); /* Цвет текста */
-    transition: background-color 0.3s, color 0.3s; /* Плавный переход между темами */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход тем */
 }
 
 .game-version { /* Номер версии */
@@ -162,7 +167,7 @@ body { /* Основной экран */
 }
 
 .controls {
-    margin-top: 15px; /* Отступ сверху для отделения от других элементов */
+    margin-top: 35px; /* Отступ сверху для отделения от других элементов */
     text-align: center; /* Центрирует содержимое элемента */
 }
 
@@ -198,8 +203,8 @@ body { /* Основной экран */
 .restart-button { /* Начать заново кнопка */
     font-size: 16px; /* Размер шрифта кнопки */
     padding: 10px 20px; /* Внутренние отступы для кнопки */
-    margin-top: 10px; /* Отступ сверху для отделения от других элементов */
-    margin-bottom: 10px; /* Отступ снизу для отделения от других элементов */
+    margin-top: -68px; /* Отступ сверху для отделения от других элементов */
+    margin-bottom: 20px; /* Отступ снизу для отделения от других элементов */
     background-color: #5a5a5a; /* Зеленый фон кнопки */
     color: rgb(205, 205, 205); /* Белый текст кнопки */
     border: none; /* Убирает стандартную рамку кнопки */
@@ -214,6 +219,9 @@ body { /* Основной экран */
 /* Стили для 3D кубика */
 .gen-container {
     display: inline-block;
+    justify-content: center; /* Центрируем кубик по горизонтали */
+    align-items: center; /* Центрируем содержимое */
+    transform: translateX(-15%); /* Центрируем по горизонтали */
     margin-top: 10px;
     position: relative;
     width: 80px;
@@ -356,7 +364,7 @@ body { /* Основной экран */
     background-color: var(--footer-bg-light); /* Цвет по умолчанию */
     color: var(--footer-text-light); /* Цвет текста по умолчанию */
     border-radius: 40px 40px 0 0; /* Закругление только сверху */
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+    box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2); /* Добавляем тень */
     display: flex; /* Flexbox для размещения содержимого */
     justify-content: space-around; /* Равномерное распределение кнопок */
     align-items: center; /* Центрируем кнопки по вертикали */
@@ -565,7 +573,7 @@ body.modal-open::before {
     width: 80%;*//
     position: relative;
     justify-content: flex-start;
-    margin: 10px auto; /* Центрирование блока */
+    margin: 40px auto; /* Центрирование блока */
     width: 80vw; /* 80% ширины экрана */
     max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
 }

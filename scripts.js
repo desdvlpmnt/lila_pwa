@@ -46,6 +46,16 @@ function showInstallButton() {
     });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme") || "light"; // Получаем тему из localStorage
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    themeToggle.checked = (savedTheme === "dark"); // Устанавливаем переключатель
+
+    // Принудительно обновляем цвета, чтобы футер и фон были корректными
+    updateThemeStyles(savedTheme);
+});
+
+
 // Логика игры
 const board = document.getElementById("board");
 const player = document.getElementById("player");
@@ -232,26 +242,34 @@ function movePlayer(position) {
 
 // Переключение темы оформления
 themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
-        // Устанавливаем тёмную тему
-        document.documentElement.setAttribute("data-theme", "dark");
-        themeColorMeta.setAttribute("content", "#474747");
-        document.documentElement.style.setProperty("--background-color-light", "#333");
-        document.documentElement.style.setProperty("--text-color-light", "#fff");
-        document.documentElement.style.setProperty("--primary-color-light", "#333");
-        document.documentElement.style.setProperty("--footer-bg-light", "#474747");
-        document.documentElement.style.setProperty("--footer-text-light", "#fff")
-    } else {
-        // Устанавливаем светлую тему
-        document.documentElement.setAttribute("data-theme", "light");
-        document.documentElement.style.setProperty("--background-color-light", "#f4f4f4");
-        themeColorMeta.setAttribute("content", "#ccc"); 
-        document.documentElement.style.setProperty("--text-color-light", "#000");
-        document.documentElement.style.setProperty("--primary-color-light", "#F4F4F4");
-        document.documentElement.style.setProperty("--footer-bg-light", "#ccc");
-        document.documentElement.style.setProperty("--footer-text-light", "#333");
-    }
+    const newTheme = themeToggle.checked ? "dark" : "light";
+
+    // Устанавливаем тему в `data-theme`
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+
+    // Обновляем стили для всей темы
+    updateThemeStyles(newTheme);
 });
+
+// Функция для обновления всех стилей (фон, футер, цвет текста)
+function updateThemeStyles(theme) {
+    const isDark = theme === "dark";
+
+    document.documentElement.style.setProperty("--background-color-light", isDark ? "#333" : "#f4f4f4");
+    document.documentElement.style.setProperty("--text-color-light", isDark ? "#fff" : "#000");
+    document.documentElement.style.setProperty("--primary-color-light", isDark ? "#333" : "#F4F4F4");
+    document.documentElement.style.setProperty("--footer-bg-light", isDark ? "#474747" : "#ccc");
+    document.documentElement.style.setProperty("--footer-text-light", isDark ? "#fff" : "#333");
+
+    // Принудительно обновляем футер (чтобы цвет загружался сразу)
+    document.querySelector(".footer").style.backgroundColor = isDark ? "#474747" : "#ccc";
+    document.querySelector(".footer").style.color = isDark ? "#fff" : "#333";
+
+    // Обновляем `<meta name="theme-color">` для браузера
+    themeColorMeta.setAttribute("content", isDark ? "#474747" : "#ccc");
+}
+
 
 // Изначально скрываем кнопку "Свернуть"
 closeModal.style.display = 'none';
