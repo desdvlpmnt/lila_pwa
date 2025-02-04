@@ -278,3 +278,4 @@ modalOverlay.addEventListener('click', () => {
     historyModal.style.bottom = '-100%'; // Скрываем модальное окно
     closeModal.style.display = 'none'; // Скрываем кнопку "Свернуть"
 });
+
