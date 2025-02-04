@@ -273,3 +273,45 @@ modalOverlay.addEventListener('click', () => {
     historyModal.style.bottom = '-100%'; // Скрываем модальное окно
     closeModal.style.display = 'none'; // Скрываем кнопку "Свернуть"
 });
+
+function drawPaths() {
+    const paths = document.getElementById("gamePaths");
+    paths.innerHTML = ''; // Очищаем перед отрисовкой
+
+    // Функция для рисования линий
+    function drawLine(from, to, type) {
+        const fromCell = document.querySelector(`[data-cell="${from}"]`);
+        const toCell = document.querySelector(`[data-cell="${to}"]`);
+        if (!fromCell || !toCell) return;
+
+        const fromRect = fromCell.getBoundingClientRect();
+        const toRect = toCell.getBoundingClientRect();
+
+        const x1 = fromRect.left + fromRect.width / 2;
+        const y1 = fromRect.top + fromRect.height / 2;
+        const x2 = toRect.left + toRect.width / 2;
+        const y2 = toRect.top + toRect.height / 2;
+
+        const newPath = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        newPath.setAttribute("x1", x1);
+        newPath.setAttribute("y1", y1);
+        newPath.setAttribute("x2", x2);
+        newPath.setAttribute("y2", y2);
+        newPath.setAttribute("class", type);
+
+        paths.appendChild(newPath);
+    }
+
+    // Отрисовываем стрелы (лестницы)
+    Object.entries(ladders).forEach(([from, to]) => {
+        drawLine(parseInt(from), to, "arrow");
+    });
+
+    // Отрисовываем змей
+    Object.entries(snakes).forEach(([from, to]) => {
+        drawLine(parseInt(from), to, "snake");
+    });
+}
+
+// Запускаем после загрузки игрового поля
+setTimeout(drawPaths, 500);

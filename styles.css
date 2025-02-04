@@ -162,7 +162,7 @@ body { /* Основной экран */
 }
 
 .controls {
-    margin-top: 10px; /* Отступ сверху для отделения от других элементов */
+    margin-top: 15px; /* Отступ сверху для отделения от других элементов */
     text-align: center; /* Центрирует содержимое элемента */
 }
 
@@ -380,9 +380,13 @@ body { /* Основной экран */
 }
 
 .footer-icon {
-    width: 20px; /* Ширина иконки */
-    height: 20px; /* Высота иконки */
-    margin-bottom: 4px; /* Отступ между иконкой и текстом */
+    width: 24px; /* Ширина иконки */
+    height: 24px; /* Высота иконки */
+    filter: invert(16%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%);    margin-bottom: 4px; /* Отступ между иконкой и текстом */
+}
+
+.footer-button:hover .footer-icon {
+    filter: invert(25%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%);
 }
 
 .footer-button span {
