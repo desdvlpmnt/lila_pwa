@@ -471,3 +471,85 @@ body.modal-open::before {
     background-color: rgba(0, 0, 0, 0.5); /* Тёмный фон при открытии модального окна */
     z-index: 999; /* Затемнение под модальным окном */
 }
+
+/* Добавьте эти стили в ваш CSS файл */
+.modal-content {
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.log {
+    width: 100%;
+}
+
+/* Обновленные стили для таблицы логов */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.log-table th,
+.log-table td {
+    padding: 8px;
+    text-align: left;
+    border: none; /* Убираем границы ячеек */
+}
+
+/* Стиль для заголовка таблицы */
+.log-table thead {
+    background-color: #5a9;
+    color: white;
+}
+
+/* Делаем одну строку для заголовка */
+.log-table thead tr {
+    display: flex;
+    width: 100%;
+}
+
+/* Задаем ширину для каждой колонки заголовка */
+.log-table thead th {
+    flex: 1;
+}
+
+/* Первая колонка (Ход) поменьше */
+.log-table thead th:first-child {
+    flex: 0.5;
+}
+
+/* Последняя колонка (Описание) побольше */
+.log-table thead th:last-child {
+    flex: 2;
+}
+
+/* Стили для тела таблицы */
+.log-table tbody tr {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Тонкая линия между строками */
+}
+
+.log-table tbody td {
+    flex: 1;
+}
+
+/* Соответствующие пропорции для ячеек тела таблицы */
+.log-table tbody td:first-child {
+    flex: 0.5;
+}
+
+.log-table tbody td:last-child {
+    flex: 2;
+}
+
+/* Чередующийся цвет строк */
+.log-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+}

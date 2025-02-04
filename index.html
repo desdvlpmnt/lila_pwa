@@ -41,17 +41,26 @@
             </div>
         </div>
     </div>
-    <div class="log">
-        <table class="log-table" id="logTable">
-            <thead>
-                <tr>
-                    <th>Ход</th>
-                    <th>Кубик</th>
-                    <th>Описание</th>
-                </tr>
-            </thead>
-            <tbody id="logBody"></tbody>
-        </table>
+    <div id="historyModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h2>История ходов</h2>
+            <div class="log">
+                <table class="log-table" id="logTable">
+                    <thead>
+                        <tr>
+                            <th>Ход</th>
+                            <th>Кубик</th>
+                            <th>Описание</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logBody"></tbody>
+                </table>
+            </div>
+        </div>
+        <button id="closeModal" class="close-button">
+            <img src="footer_icons/chevron-down.svg" alt="Свернуть">
+        </button>
     </div>
     <div id="historyModal" class="modal">
         <div class="modal-overlay"></div> <!-- Тёмный фон -->
