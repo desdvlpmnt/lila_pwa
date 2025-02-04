@@ -55,6 +55,10 @@ const restartGame = document.getElementById("restartGame");
 const themeToggle = document.getElementById("themeToggle");
 const animatedDice = document.getElementById("animatedDice");
 const themeColorMeta = document.querySelector('meta[name="theme-color"]'); // Мета-тег
+const historyButton = document.querySelector('.footer-button:nth-child(2)'); // Кнопка "История"
+const historyModal = document.getElementById('historyModal');
+const closeModal = document.getElementById('closeModal');
+const modalOverlay = document.querySelector('.modal-overlay'); // Overlay (тёмный фон)
 
 // Массив названий клеток игрового поля
 const cellNames = [
@@ -152,15 +156,6 @@ animatedDice.addEventListener("click", function handleDiceClick() {
         logMove(diceSum, `${currentPosition} → ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
-/*          // Проверка на лестницы и змеи
-        if (ladders[currentPosition]) {
-            logMove("Лестница", `Поднимаемся на ${ladders[currentPosition]} (${cellNames[ladders[currentPosition] - 1]})`);
-            currentPosition = ladders[currentPosition];
-        } else if (snakes[currentPosition]) {
-            logMove("Змея", `Спускаемся на ${snakes[currentPosition]} (${cellNames[snakes[currentPosition] - 1]})`);
-            currentPosition = snakes[currentPosition];
-        }
- */
         // Проверка на лестницы и змеи
         if (ladders[currentPosition]) {
             const previousPosition = currentPosition; // Текущая позиция до перехода
@@ -207,15 +202,6 @@ function logMove(diceRoll, description) {
     logBody.prepend(row);
 }
 
-// Обработка перезапуска игры
-/* restartGame.addEventListener("click", () => {
-    currentPosition = 1;
-    moveCount = 0;
-    logBody.innerHTML = "";
-    animatedDice.setAttribute('data-roll', 1); // Сброс анимации кубика
-    movePlayer(currentPosition);
-    rollDice.disabled = false; // Активируем кнопку броска кубика
-}); */
 restartGame.addEventListener("click", () => {
     currentPosition = 1; // Сброс позиции игрока
     moveCount = 0; // Сброс счетчика ходов
@@ -225,20 +211,6 @@ restartGame.addEventListener("click", () => {
     movePlayer(currentPosition); // Возвращаем игрока на старт
     rollDice.disabled = false; // Разрешаем бросать кубик
 });
-
-/* // Переключение темы оформления
-themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
-        document.documentElement.style.setProperty('--background-color-light', '#f4f4f4');
-        document.documentElement.style.setProperty('--text-color-light', '#000');
-        document.documentElement.style.setProperty('--primary-color-light', '#007bff'); 
-    } else {
-        document.documentElement.style.setProperty('--background-color-light', '#333');
-        document.documentElement.style.setProperty('--text-color-light', '#fff');
-        document.documentElement.style.setProperty('--primary-color-light', '#5a9');
-    }
-}); */
-
 
 function movePlayer(position) {
     const row = Math.floor((position - 1) / 9);
@@ -263,17 +235,6 @@ function movePlayer(position) {
     player.style.top = `${y}%`;
 }
 
-/* const themeToggle = document.getElementById('themeToggle');
-
-themeToggle.addEventListener('change', () => {
-    if (themeToggle.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
-});
- */
-
 // Переключение темы оформления
 themeToggle.addEventListener("change", () => {
     if (themeToggle.checked) {
@@ -296,11 +257,6 @@ themeToggle.addEventListener("change", () => {
         document.documentElement.style.setProperty("--footer-text-light", "#333");
     }
 });
-
-const historyButton = document.querySelector('.footer-button:nth-child(2)'); // Кнопка "История"
-const historyModal = document.getElementById('historyModal');
-const closeModal = document.getElementById('closeModal');
-const modalOverlay = document.querySelector('.modal-overlay'); // Overlay (тёмный фон)
 
 // Изначально скрываем кнопку "Свернуть"
 closeModal.style.display = 'none';
