@@ -3,24 +3,12 @@
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
     --background-color-dark: #f4f4f4; /* Светлый фон теперь тёмная тема */
     --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */
-    --primary-color-light: #5a9; /* Цвет основной кнопки для новой "светлой темы" */
-    --primary-color-dark: #007bff; /* Цвет основной кнопки для новой "тёмной темы" */
+    --primary-color-light: #333; /* Цвет основной кнопки для новой "светлой темы" */
+    --primary-color-dark: #333; /* Цвет основной кнопки для новой "тёмной темы" */
     --modal-bg-light: #ffffff;
     --modal-bg-dark: #333333;
     --theme-color-light: #f4f4f4; /* Цвет строки состояния для светлой темы */
     --theme-color-dark: #ccc; /* Цвет строки состояния для темной темы */
-}
-
-:root[data-theme="light"] {
-    --background-color-light: #f4f4f4;
-    --text-color-light: #000;
-    --primary-color-light: #007bff;
-}
-
-:root[data-theme="dark"] {
-    --background-color-light: #333;
-    --text-color-light: #fff;
-    --primary-color-light: #5a9;
 }
 
 .theme-switcher { /* Переключатель темы */
@@ -185,7 +173,7 @@ body { /* Основной экран */
     text-align: left; /* Выравнивает текст по левому краю */
     font-size: 16px; /* Размер шрифта для текста */
     overflow-y: auto; /* Добавляет прокрутку по вертикали, если содержимое превышает высоту */
-    height: 150px; /* Устанавливает фиксированную высоту для лога */
+    height: 100%; /* Устанавливает фиксированную высоту для лога */
     border: 1px solid var(--text-color-dark); /* Рамка с использованием темного цвета текста */
     padding: 5px; /* Внутренние отступы вокруг текста */
     background: var(--background-color-light); /* Фон с использованием переменной темы */
@@ -398,7 +386,7 @@ body { /* Основной экран */
 }
 
 .footer-button span {
-    font-size: 10px; /* Размер текста под иконкой */
+    font-size: 12px; /* Размер текста под иконкой */
 }
 
 .modal {
@@ -474,18 +462,22 @@ body.modal-open::before {
 
 /* Добавьте эти стили в ваш CSS файл */
 .modal-content {
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     max-height: 80vh;
     overflow-y: auto;
 }
 
 .modal-content h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: center;
+    font-size: 16px; /* Размер текста под иконкой */
 }
 
 .log {
-    width: 100%;
+    flex-grow: 1; /* Позволяет истории занимать доступное пространство */
+    overflow-y: auto; /* Добавляет прокрутку, если контент выходит за границы */
+    max-height: 60vh; /* Ограничивает высоту истории ходов */
 }
 
 /* Обновленные стили для таблицы логов */
@@ -504,8 +496,9 @@ body.modal-open::before {
 
 /* Стиль для заголовка таблицы */
 .log-table thead {
-    background-color: #5a9;
-    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 /* Делаем одну строку для заголовка */
