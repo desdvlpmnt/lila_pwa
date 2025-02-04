@@ -111,35 +111,39 @@ function movePlayer(position) {
 // Инициализация позиции игрока
 movePlayer(currentPosition);
 
-// Бросок кубика
+// Функция обновления информации о ходе
+function updateTurnInfo(number, position) {
+    const cellName = cellNames[position - 1] || `Клетка ${position}`; // Название клетки
+
+    document.getElementById("turnName").textContent = cellName; // Вставляем название клетки
+    document.getElementById("turnNumber").textContent = `Ход: ${number}`; // Теперь тут номер хода
+    document.getElementById("diceResult").textContent = position; // Теперь тут номер ячейки
+}
+
+// Бросок кубика с обновлением номера клетки
 animatedDice.addEventListener("click", function handleDiceClick() {
     if (currentPosition === 1) {
-        // Проверяем, находится ли игрок на старте
-        const messageElement = document.getElementById("message") || createMessageElement(); // Создаем или используем существующее сообщение
+        const messageElement = document.getElementById("message") || createMessageElement();
         let diceRoll = Math.floor(Math.random() * 6) + 1;
 
-        animatedDice.setAttribute('data-roll', diceRoll); // Обновляем анимацию кубика
+        animatedDice.setAttribute('data-roll', diceRoll);
         logMove(diceRoll, `Бросок: ${diceRoll}`);
 
         if (diceRoll === 6) {
-            // Если выпала 6, начинаем игру
             currentPosition = 6;
             movePlayer(currentPosition);
             logMove(diceRoll, "Вы выбросили 6! Игра начинается, вы на поле 6.");
-            messageElement.textContent = ""; // Очищаем сообщение
+            messageElement.textContent = "";
         } else {
-            // Если не выпала 6, показываем сообщение
             messageElement.textContent = "Вы должны выбросить 6, чтобы начать игру.";
         }
     } else {
-        // Основной ход
         let diceRoll = Math.floor(Math.random() * 6) + 1;
         animatedDice.setAttribute('data-roll', diceRoll);
 
         let diceSum = 0;
         let currentRoll = diceRoll;
 
-        // Если выпадает 6, продолжаем бросать
         while (currentRoll === 6) {
             diceSum += currentRoll;
             logMove(currentRoll, "Выпала шестерка, продолжаем бросать.");
@@ -149,31 +153,21 @@ animatedDice.addEventListener("click", function handleDiceClick() {
 
         diceSum += currentRoll;
         let newPosition = currentPosition + diceSum;
-
-        // Проверка на выход за пределы игрового поля
         if (newPosition > boardSize) newPosition = boardSize;
 
         logMove(diceSum, `${currentPosition} → ${newPosition} (${cellNames[newPosition - 1]})`);
         currentPosition = newPosition;
 
-        // Проверка на лестницы и змеи
         if (ladders[currentPosition]) {
-            const previousPosition = currentPosition; // Текущая позиция до перехода
-            currentPosition = ladders[currentPosition]; // Новая позиция после лестницы
-            logMove(
-                "Лестница", // Отображаем "Лестница" в столбце "Кубик"
-                `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})` // Формат описания в столбце "Описание"
-            );
+            const previousPosition = currentPosition;
+            currentPosition = ladders[currentPosition];
+            logMove("Лестница", `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})`);
         } else if (snakes[currentPosition]) {
-            const previousPosition = currentPosition; // Текущая позиция до перехода
-            currentPosition = snakes[currentPosition]; // Новая позиция после змеи
-            logMove(
-                "Змея", // Отображаем "Змея" в столбце "Кубик"
-                `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})` // Формат описания в столбце "Описание"
-            );
+            const previousPosition = currentPosition;
+            currentPosition = snakes[currentPosition];
+            logMove("Змея", `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})`);
         }
 
-        // Проверка завершения игры
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
             animatedDice.removeEventListener("click", handleDiceClick);
@@ -181,6 +175,7 @@ animatedDice.addEventListener("click", function handleDiceClick() {
     }
 
     movePlayer(currentPosition);
+    updateTurnInfo(moveCount, currentPosition); // Передаем номер хода и номер ячейки
 });
 
 // Создаем или возвращаем элемент для сообщения
@@ -278,4 +273,3 @@ modalOverlay.addEventListener('click', () => {
     historyModal.style.bottom = '-100%'; // Скрываем модальное окно
     closeModal.style.display = 'none'; // Скрываем кнопку "Свернуть"
 });
-

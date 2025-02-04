@@ -10,7 +10,7 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="game-version">Версия 1.1.75.</div>
+    <div class="game-version">Версия 1.1.76.</div>
     <div class="theme-switcher">
         <label class="toggle">
             <input type="checkbox" id="themeToggle">
@@ -42,15 +42,21 @@
         </div>
     </div>
     <div class="turn-info">
-        <img src="turn_icon.png" alt="Ход" class="turn-icon">
+        <div class="icon-container">
+            <img src="general/back.png" alt="Ход" class="turn-icon">
+            <div class="dice-overlay" id="diceResult">1</div> <!-- Теперь номер поверх иконки -->
+        </div>
         <div class="turn-text">
-            <div class="turn-name" id="turnName">БЕСКОНЕЧНОСТЬ</div>
+            <div class="turn-cell" id="turnName">Земля</div> <!-- Название ячейки -->
             <div class="turn-details">
-                <span id="turnNumber">Ход: 35</span>
+                <span id="turnNumber">Ход: 0</span> <!-- Номер хода -->
+            </div>
+            <div class="turn-buttons">
+                <button class="turn-btn" id="shortBtn">Коротко</button>
+                <button class="turn-btn" id="detailedBtn">Подробно</button>
             </div>
         </div>
-        <div class="dice-result" id="diceResult">32</div>
-    </div>   
+    </div>
     <div id="historyModal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
