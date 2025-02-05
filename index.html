@@ -7,10 +7,11 @@
     <title>Leela Game</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="game-version">Версия 1.1.77.</div>
+    <div class="game-version">Версия 1.1.78.</div>
     <div class="theme-switcher">
         <label class="toggle">
             <input type="checkbox" id="themeToggle">
@@ -20,43 +21,58 @@
             </span>
         </label>
     </div>  
-    <button class="restart-button" id="restartGame">Начать заново</button>
-    <div class="board-container">
-        <div class="board" id="board"></div>
-        <div class="player" id="player"></div>
-    </div>
-    <div class="controls">
-        <div class="gen-container">
-            <div class="contain-dice-6">
-                <div class="dice-6">
-                    <ol class="die-list even-roll" data-roll="1" id="animatedDice">
-                        <li class="die-item" data-side="1"><span class="dot"></span></li>
-                        <li class="die-item" data-side="2"><span class="dot"></span><span class="dot"></span></li>
-                        <li class="die-item" data-side="3"><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
-                        <li class="die-item" data-side="4"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
-                        <li class="die-item" data-side="5"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
-                        <li class="die-item" data-side="6"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
-                    </ol>
+
+    <div class="game-container">
+        <!-- Кнопка "Начать заново" -->
+        <button class="restart-button" id="restartGame">Начать заново</button>
+
+        <!-- Игровое поле -->
+        <div class="board-container">
+            <div class="board" id="board"></div>
+            <div class="player" id="player"></div>
+        </div>
+
+        <!-- Кубик -->
+        <div class="controls">
+            <div class="gen-container">
+                <div class="contain-dice-6">
+                    <div class="dice-6">
+                        <ol class="die-list even-roll" data-roll="1" id="animatedDice">
+                            <li class="die-item" data-side="1"><span class="dot"></span></li>
+                            <li class="die-item" data-side="2"><span class="dot"></span><span class="dot"></span></li>
+                            <li class="die-item" data-side="3"><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                            <li class="die-item" data-side="4"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                            <li class="die-item" data-side="5"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                            <li class="die-item" data-side="6"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сообщения -->
+        <div class="message-container" id="messageContainer"></div>
+
+        <!-- Лог ходов -->
+        <div class="turn-info">
+            <div class="icon-container">
+                <img src="general/back.png" alt="Ход" class="turn-icon">
+                <div class="dice-overlay" id="diceResult">1</div>
+            </div>
+            <div class="turn-text">
+                <div class="turn-cell" id="turnName">Земля</div>
+                <div class="turn-details">
+                    <span id="turnNumber">Ход: 0</span>
+                </div>
+                <div class="turn-buttons">
+                    <button class="turn-btn" id="shortBtn">Коротко</button>
+                    <button class="turn-btn" id="detailedBtn">Подробно</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="turn-info">
-        <div class="icon-container">
-            <img src="general/back.png" alt="Ход" class="turn-icon">
-            <div class="dice-overlay" id="diceResult">1</div> <!-- Теперь номер поверх иконки -->
-        </div>
-        <div class="turn-text">
-            <div class="turn-cell" id="turnName">Земля</div> <!-- Название ячейки -->
-            <div class="turn-details">
-                <span id="turnNumber">Ход: 0</span> <!-- Номер хода -->
-            </div>
-            <div class="turn-buttons">
-                <button class="turn-btn" id="shortBtn">Коротко</button>
-                <button class="turn-btn" id="detailedBtn">Подробно</button>
-            </div>
-        </div>
-    </div>
+
+    <!-- История ходов (убран дубликат) -->
     <div id="historyModal" class="modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -78,29 +94,17 @@
             <img src="footer_icons/chevron-down.svg" alt="Свернуть">
         </button>
     </div>
-    <div id="historyModal" class="modal">
-        <div class="modal-overlay"></div> <!-- Тёмный фон -->
-        <div class="modal-content">
-            <p>Ваше содержимое здесь</p>
-        </div>
-        <button id="closeModal" class="close-button">
-            <img src="footer_icons/chevron-down.svg" alt="Свернуть">
-        </button>
-    </div>       
+
+    <!-- Футер -->
     <footer class="footer">
-        <!-- Кнопка "Домой" -->
         <button class="footer-button" id="homeButton">
             <img src="footer_icons/home-04.svg" alt="Домой" class="footer-icon">
             <span>Домой</span>
         </button>
-    
-        <!-- Кнопка "История" -->
         <button class="footer-button" id="historyButton">
             <img src="footer_icons/mail-05.svg" alt="История" class="footer-icon">
             <span>История</span>
         </button>
-    
-        <!-- Кнопка "Профиль" -->
         <button class="footer-button" id="profileButton">
             <img src="footer_icons/user-profile-circle.svg" alt="Профиль" class="footer-icon">
             <span>Профиль</span>

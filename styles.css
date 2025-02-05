@@ -151,6 +151,7 @@ body {
     text-shadow: 1px 1px 2px #000; /* Тень для текста */
     background: rgba(0, 0, 0, 0.3); /* Полупрозрачный фон */
     overflow: hidden; /* Убирает содержимое, выходящее за границы */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .cell span {
@@ -200,20 +201,24 @@ body {
     border-radius: 25px; /* Закругляет углы контейнера доски */
 }
 
-.restart-button { /* Начать заново кнопка */
-    font-size: 16px; /* Размер шрифта кнопки */
+/* Кнопка "Начать заново" */
+.restart-button {
+    font-size: 14px; /* Размер шрифта кнопки */
     padding: 10px 20px; /* Внутренние отступы для кнопки */
     margin-top: -68px; /* Отступ сверху для отделения от других элементов */
     margin-bottom: 20px; /* Отступ снизу для отделения от других элементов */
-    background-color: #5a5a5a; /* Зеленый фон кнопки */
-    color: rgb(205, 205, 205); /* Белый текст кнопки */
-    border: none; /* Убирает стандартную рамку кнопки */
-    border-radius: 20px; /* Закругленные углы кнопки */
+    background-color: #5a5a5a; /* Цвет фона кнопки */
+    color: rgb(205, 205, 205); /* Цвет текста кнопки */
+    border: none; /* Убираем стандартную рамку кнопки */
+    border-radius: 25px; /* Закругленные углы кнопки */
     cursor: pointer; /* Указывает, что кнопка кликабельна */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+    //*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;*/
+    font-family: 'Inter', sans-serif;
 }
 
-.restart-button:hover { /* Меняет фон кнопки при наведении */
-    background-color: #292929; 
+.restart-button:hover {
+    background-color: #292929; /* Темнее при наведении */
 }
 
 /* Стили для 3D кубика */
@@ -371,7 +376,6 @@ body {
     z-index: 100; /* Поверх других элементов */
 /* padding: 0 10px; /* Внутренние отступы */
     transition: background-color 0.4s, color 0.4s; /* Плавный переход для цвета */
-
 }
 
 .footer-button {
@@ -385,6 +389,7 @@ body {
     justify-content: center; /* Центрируем содержимое кнопки */
     font-size: 12px; /* Размер текста */
     color: inherit; /* Используем цвет текста футера */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .footer-icon {
@@ -569,13 +574,15 @@ body.modal-open::before {
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    //*margin-top: 15px;
+    /*margin-top: 15px;
     width: 80%;*//
     position: relative;
     justify-content: flex-start;
     margin: 40px auto; /* Центрирование блока */
     width: 80vw; /* 80% ширины экрана */
     max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
+    font-family: 'Inter', sans-serif;
+    /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;*/
 }
 
 .turn-icon {
@@ -646,7 +653,7 @@ body.modal-open::before {
     display: flex;
     gap: 10px; /* Расстояние между кнопками */
     margin-top: 8px; /* Отступ сверху от текста */
-}
+    }
 
 .turn-btn {
     background-color: #555;
@@ -659,8 +666,32 @@ body.modal-open::before {
     font-size: 14px;
     cursor: pointer;
     transition: background 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .turn-btn:hover {
     background-color: #777;
 }
+
+.message-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 80%;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    background: rgba(87, 87, 87, 0.9);
+    padding: 12px 16px;
+    border-radius: 8px;
+    display: none;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+}
+
+#message {
+    margin: 0;
+}
+

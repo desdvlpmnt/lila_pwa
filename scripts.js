@@ -133,7 +133,6 @@ function updateTurnInfo(number, position) {
 // Бросок кубика с обновлением номера клетки
 animatedDice.addEventListener("click", function handleDiceClick() {
     if (currentPosition === 1) {
-        const messageElement = document.getElementById("message") || createMessageElement();
         let diceRoll = Math.floor(Math.random() * 6) + 1;
 
         animatedDice.setAttribute('data-roll', diceRoll);
@@ -141,27 +140,28 @@ animatedDice.addEventListener("click", function handleDiceClick() {
 
         if (diceRoll === 6) {
             currentPosition = 6;
+            moveCount++; // Увеличиваем номер хода
             movePlayer(currentPosition);
             logMove(diceRoll, "Вы выбросили 6! Игра начинается, вы на поле 6.");
-            messageElement.textContent = "";
+            showMessage("Вы выбросили 6! Игра начинается, вы на поле 6."); // Показываем сообщение
         } else {
-            messageElement.textContent = "Вы должны выбросить 6, чтобы начать игру.";
+            showMessage("Вы должны выбросить 6, чтобы начать игру.");
         }
     } else {
         let diceRoll = Math.floor(Math.random() * 6) + 1;
         animatedDice.setAttribute('data-roll', diceRoll);
 
-        let diceSum = 0;
+        let diceSum = diceRoll;
         let currentRoll = diceRoll;
 
+        // Если выпадает 6, продолжаем бросать
         while (currentRoll === 6) {
-            diceSum += currentRoll;
             logMove(currentRoll, "Выпала шестерка, продолжаем бросать.");
             currentRoll = Math.floor(Math.random() * 6) + 1;
+            diceSum += currentRoll;
             animatedDice.setAttribute('data-roll', currentRoll);
         }
 
-        diceSum += currentRoll;
         let newPosition = currentPosition + diceSum;
         if (newPosition > boardSize) newPosition = boardSize;
 
@@ -172,14 +172,17 @@ animatedDice.addEventListener("click", function handleDiceClick() {
             const previousPosition = currentPosition;
             currentPosition = ladders[currentPosition];
             logMove("Лестница", `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})`);
+            showMessage(`Вы попали на лестницу! Перемещение на клетку ${currentPosition}.`);
         } else if (snakes[currentPosition]) {
             const previousPosition = currentPosition;
             currentPosition = snakes[currentPosition];
             logMove("Змея", `${previousPosition} → ${currentPosition} (${cellNames[currentPosition - 1]})`);
+            showMessage(`Вы попали на змею! Перемещение на клетку ${currentPosition}.`);
         }
 
         if (currentPosition === 68) {
             logMove("Финиш", "Поздравляем! Вы достигли поля 68 и завершили игру!");
+            showMessage("Поздравляем! Вы достигли поля 68 и завершили игру!");
             animatedDice.removeEventListener("click", handleDiceClick);
         }
     }
@@ -188,15 +191,17 @@ animatedDice.addEventListener("click", function handleDiceClick() {
     updateTurnInfo(moveCount, currentPosition); // Передаем номер хода и номер ячейки
 });
 
-// Создаем или возвращаем элемент для сообщения
-function createMessageElement() {
-    const messageElement = document.createElement("div");
-    messageElement.id = "message";
-    messageElement.style.textAlign = "center";
-    messageElement.style.marginTop = "10px";
-    messageElement.style.color = "red";
-    document.body.appendChild(messageElement);
-    return messageElement;
+// Функция для показа сообщений без сдвига игрового поля
+function showMessage(text) {
+    let messageContainer = document.getElementById("messageContainer");
+    if (!messageContainer) return;
+
+    messageContainer.textContent = text;
+    messageContainer.style.display = "block";
+
+    setTimeout(() => {
+        messageContainer.style.display = "none";
+    }, 3500);
 }
 
 // Логирование хода игрока
