@@ -706,7 +706,6 @@ body.modal-open::before {
     --primary-color-dark: #333; /* Цвет основной кнопки для новой "тёмной темы" */
     border-radius: 20px;
     padding: 20px;
-    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
     position: relative;
     font-family: 'Inter', sans-serif;
     height: 30px; /* Фиксированная высота контейнера */
