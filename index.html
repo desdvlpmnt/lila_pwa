@@ -11,7 +11,7 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="game-version">Версия 1.1.79.</div>
+    <div class="game-version">Версия 1.1.81.</div>
     <div class="theme-switcher">
         <label class="toggle">
             <input type="checkbox" id="themeToggle">
@@ -48,6 +48,15 @@
                     <button class="turn-btn" id="detailedBtn">Подробно</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Всплывающее окно -->
+    <div id="popup-overlay" class="popup-overlay"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="popup-close" class="popup-close">&times;</span>
+            <div id="popup-text"></div>
         </div>
     </div>
 

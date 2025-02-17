@@ -346,3 +346,80 @@ function drawPaths() {
 
 // Запускаем после загрузки игрового поля
 setTimeout(drawPaths, 500);
+
+// Загрузка данных из JSON
+function loadJsonData() {
+    return fetch('data.json') // Убедитесь, что файл в той же папке
+        .then(response => response.json())
+        .then(data => data)
+        .catch((error) => {
+            console.error("Ошибка при загрузке JSON:", error);
+        });
+}
+
+// Функция для отображения текста в всплывающем окне
+function showPopup(cellName, type) {
+    loadJsonData().then(data => {
+        // Проверяем, что данные для ячейки существуют
+        const text = data[cellName] && data[cellName][type];
+
+        if (text) {
+            // Устанавливаем текст в всплывающее окно
+            document.getElementById('popup-text').textContent = text;
+
+            // Показываем всплывающее окно и overlay
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('popup-overlay').style.display = 'block';
+
+            // Анимация появления окна сверху
+            setTimeout(() => {
+                document.getElementById('popup').style.top = '10px'; // Окно появляется сверху
+            }, 10);
+        } else {
+            console.error(`Не найдено текста для ${cellName} с типом ${type}`);
+        }
+    });
+}
+
+// Закрытие всплывающего окна
+function closePopup() {
+    document.getElementById('popup').style.top = '-100%'; // Анимация скрытия
+    setTimeout(() => {
+        document.getElementById('popup').style.display = 'none'; // Скрываем окно после анимации
+        document.getElementById('popup-overlay').style.display = 'none'; // Скрываем overlay
+    }, 300); // Задержка для завершения анимации
+}
+
+// Обработчики для кнопок
+document.getElementById('shortBtn').addEventListener('click', () => {
+    const cellName = document.getElementById('turnName').textContent;
+    showPopup(cellName, 'коротко');
+});
+
+document.getElementById('detailedBtn').addEventListener('click', () => {
+    const cellName = document.getElementById('turnName').textContent;
+    showPopup(cellName, 'подробно');
+});
+
+// Закрытие окна при нажатии на кнопку "×"
+document.getElementById('popup-close').addEventListener('click', closePopup);
+
+// Закрытие окна при клике на overlay
+document.getElementById('popup-overlay').addEventListener('click', closePopup);
+
+console.log('Кнопка нажата!'); // Добавьте это внутри обработчиков для кнопок
+
+loadJsonData().then(data => {
+    const text = data[cellName] && data[cellName][type];
+    if (text) {
+        console.log('Текст найден:', text);
+        document.getElementById('popup-text').textContent = text;
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('popup-overlay').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('popup').style.top = '10px';
+        }, 10);
+    } else {
+        console.error(`Не найден текст для ${cellName} с типом ${type}`);
+    }
+});
