@@ -169,8 +169,9 @@ body {
 }
 
 .controls {
-    margin-top: 35px; /* Отступ сверху для отделения от других элементов */
-    text-align: center; /* Центрирует содержимое элемента */
+    padding: 20px;
+    position: relative;
+    max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
 }
 
 .log { /* История логи */
@@ -228,14 +229,10 @@ body {
 .gen-container {
     display: inline-block;
     justify-content: center; /* Центрируем кубик по горизонтали */
-    align-items: center; /* Центрируем содержимое */
-    transform: translateX(-15%); /* Центрируем по горизонтали */
-    margin-top: 10px;
     position: relative;
     width: 80px;
     height: 80px;
     perspective: 600px;
-    margin-left: 20px;
 }
 
 .contain-dice-6 {
@@ -576,13 +573,13 @@ body.modal-open::before {
     --primary-color-light: #333; /* Цвет основной кнопки для новой "светлой темы" */
     --primary-color-dark: #333; /* Цвет основной кнопки для новой "тёмной темы" */
     border-radius: 20px;
+    margin: 15px auto; /* Центрирование блока */
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     /*margin-top: 15px;
     width: 80%;*//
     position: relative;
     justify-content: flex-start;
-    margin: 15px auto; /* Центрирование блока */
     width: 80vw; /* 80% ширины экрана */
     max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
     font-family: 'Inter', sans-serif;
@@ -697,22 +694,36 @@ body.modal-open::before {
 }
     */
 
-    .message-container {
-        position: absolute;
-        bottom: 110px; /* Поднимаем текст выше кубика */
-        left: 50%;
-        transform: translateX(-50%);
-        background: black;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 10px;
-        text-align: center;
-        font-size: 16px;
-        max-width: 80%;
-    }
-
-
-#message {
-    margin: 0;
+.message-container {
+    display: flex;
+    align-items: center;
+    --primary-color-light: #333; /* Цвет основной кнопки для новой "светлой темы" */
+    --primary-color-dark: #333; /* Цвет основной кнопки для новой "тёмной темы" */
+    border-radius: 20px;
+    padding: 20px;
+    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
+    position: relative;
+    justify-content: flex-start;
+    width: 80%; /* 80% ширины экрана */
+    max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
+    font-family: 'Inter', sans-serif;
+    height: 60px; /* Фиксированная высота контейнера */
+    box-sizing: border-box; /* Чтобы padding не увеличивал размеры контейнера */
+    visibility: visible; /* Контейнер всегда видимый */
 }
+
+.message-container .message {
+    display: block;
+    visibility: hidden; /* Скрываем текст, когда он отсутствует */
+}
+
+/* Когда текст появляется */
+.message-container .message:not(:empty) {
+    visibility: visible;
+}
+    
+    
+    
+    
+
 
