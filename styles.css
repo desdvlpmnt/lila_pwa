@@ -103,6 +103,7 @@ body {
     padding: 5px 10px; /* Внутренние отступы */
     border-radius: 5px; /* Скругленные углы */
     z-index: 1000; /* Поверх других элементов */
+    font-family: 'Inter', sans-serif;
 }
 
 .board-container { /* Доска */
@@ -189,10 +190,12 @@ body {
     width: 100%; /* Таблица занимает всю ширину родителя */
     border-collapse: collapse; /* Убирает промежутки между границами ячеек */
     text-align: left; /* Выравнивание текста по левому краю */
+    font-family: 'Inter', sans-serif;
 }
 
 .log-table th, .log-table td { /* История логи2 */
     padding: 8px; /* Внутренние отступы внутри ячеек */
+    font-family: 'Inter', sans-serif;
 }
 
 .log-table th { /* История логи3 */
@@ -387,7 +390,7 @@ body {
     flex-direction: column; /* Иконка сверху, текст снизу */
     align-items: center; /* Центрируем содержимое кнопки */
     justify-content: center; /* Центрируем содержимое кнопки */
-    font-size: 12px; /* Размер текста */
+    font-size: 16px; /* Размер текста */
     color: inherit; /* Используем цвет текста футера */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
@@ -489,6 +492,7 @@ body.modal-open::before {
     margin-bottom: 20px;
     text-align: center;
     font-size: 16px; /* Размер текста под иконкой */
+    font-family: 'Inter', sans-serif;
 }
 
 .log {
@@ -578,7 +582,7 @@ body.modal-open::before {
     width: 80%;*//
     position: relative;
     justify-content: flex-start;
-    margin: 40px auto; /* Центрирование блока */
+    margin: 15px auto; /* Центрирование блока */
     width: 80vw; /* 80% ширины экрана */
     max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
     font-family: 'Inter', sans-serif;
@@ -673,6 +677,7 @@ body.modal-open::before {
     background-color: #777;
 }
 
+/*
 .message-container {
     position: fixed;
     top: 50%;
@@ -690,6 +695,22 @@ body.modal-open::before {
     z-index: 100;
     font-family: 'Inter', sans-serif;
 }
+    */
+
+    .message-container {
+        position: absolute;
+        bottom: 110px; /* Поднимаем текст выше кубика */
+        left: 50%;
+        transform: translateX(-50%);
+        background: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 16px;
+        max-width: 80%;
+    }
+
 
 #message {
     margin: 0;
