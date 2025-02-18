@@ -410,3 +410,16 @@ loadJsonData().then(data => {
         console.error(`Не найден текст для ${cellName} с типом ${type}`);
     }
 });
+
+// Функция для открытия всплывающего окна и обновления названия ячейки
+function openPopup(name) {
+    document.getElementById('popup-turnName').innerText = name; // Обновляем название в попапе
+    document.getElementById('popup').style.display = 'block'; // Показываем всплывающее окно
+    document.getElementById('popup-overlay').style.display = 'block'; // Показываем overlay
+}
+
+// Функция для закрытия всплывающего окна
+function closePopup() {
+    document.getElementById('popup').style.display = 'none'; // Скрываем всплывающее окно
+    document.getElementById('popup-overlay').style.display = 'none'; // Скрываем overlay
+}
