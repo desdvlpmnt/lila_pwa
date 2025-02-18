@@ -336,13 +336,15 @@ setTimeout(drawPaths, 500);
 
 // Загрузка данных из JSON
 function loadJsonData() {
-    return fetch('data.json') // Убедитесь, что файл в той же папке
+    return fetch('data.json')
         .then(response => response.json())
-        .then(data => data)
-        .catch((error) => {
-            console.error("Ошибка при загрузке JSON:", error);
-        });
+        .then(data => {
+            const container = document.getElementById('content'); // Убедитесь, что в HTML есть этот элемент
+            container.innerHTML = data.text; // Подставляем HTML-код из JSON
+        })
+        .catch(error => console.error('Ошибка загрузки JSON:', error));
 }
+
 
 // Функция для отображения текста в всплывающем окне
 function showPopup(cellName, type) {
@@ -351,8 +353,8 @@ function showPopup(cellName, type) {
         const text = data[cellName] && data[cellName][type];
 
         if (text) {
-            // Устанавливаем текст в всплывающее окно
-            document.getElementById('popup-text').textContent = text;
+            // Устанавливаем HTML в всплывающее окно
+            document.getElementById('popup-text').innerHTML = text;
 
             // Показываем всплывающее окно и overlay
             document.getElementById('popup').style.display = 'block';
