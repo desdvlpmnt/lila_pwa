@@ -1,8 +1,8 @@
 :root { /* Тема */
     --background-color-light: #333; /* Тёмный фон теперь светлая тема */
-    --text-color-light: #fff; /* Светлый текст для "светлой темы" */
     --background-color-dark: #f4f4f4; /* Светлый фон теперь тёмная тема */
-    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */
+    --text-color-light: #fff; /* Светлый текст для "светлой темы" */
+    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */ 
     --primary-color-light: #333; /* Цвет основной кнопки для новой "светлой темы" */
     --primary-color-dark: #333; /* Цвет основной кнопки для новой "тёмной темы" */
     --modal-bg-light: #ffffff;
@@ -725,7 +725,10 @@ body.modal-open::before {
     top: -100%; /* Изначально скрыто сверху */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #fff;
+    --background-color-light: #333; /* Тёмный фон теперь светлая тема */
+    --background-color-dark: #f4f4f4; /* Светлый фон теперь тёмная тема */
+    --text-color-light: #fff; /* Светлый текст для "светлой темы" */
+    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */ 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 8px;
