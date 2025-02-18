@@ -338,9 +338,9 @@ setTimeout(drawPaths, 500);
 function loadJsonData() {
     return fetch('data.json') // Убедитесь, что файл в той же папке
         .then(response => response.json())
+        .then(data => data)
         .catch((error) => {
             console.error("Ошибка при загрузке JSON:", error);
-            return {}; // Возвращаем пустой объект, чтобы избежать ошибок
         });
 }
 
@@ -348,12 +348,11 @@ function loadJsonData() {
 function showPopup(cellName, type) {
     loadJsonData().then(data => {
         // Проверяем, что данные для ячейки существуют
-        if (data[cellName] && data[cellName][type]) {
-            // Обновляем название ячейки в попапе
-            document.getElementById('popup-turnName').innerText = cellName;
+        const text = data[cellName] && data[cellName][type];
 
+        if (text) {
             // Устанавливаем текст в всплывающее окно
-            document.getElementById('popup-text').innerHTML = data[cellName][type];
+            document.getElementById('popup-text').innerHTML = text;
 
             // Показываем всплывающее окно и overlay
             document.getElementById('popup').style.display = 'block';
@@ -361,10 +360,10 @@ function showPopup(cellName, type) {
 
             // Анимация появления окна сверху
             setTimeout(() => {
-                document.getElementById('popup').style.top = '10px';
-            }, 50);
+                document.getElementById('popup').style.top = '10px'; // Окно появляется сверху
+            }, 10);
         } else {
-            console.warn(`Данные для ячейки "${cellName}" не найдены`);
+            console.error(`Не найдено текста для ${cellName} с типом ${type}`);
         }
     });
 }
@@ -380,12 +379,12 @@ function closePopup() {
 
 // Обработчики для кнопок
 document.getElementById('shortBtn').addEventListener('click', () => {
-    const cellName = document.getElementById('turnName').innerText; // Используйте innerText для текста
+    const cellName = document.getElementById('turnName').innerHTML;
     showPopup(cellName, 'коротко');
 });
 
 document.getElementById('detailedBtn').addEventListener('click', () => {
-    const cellName = document.getElementById('turnName').innerText; // Используйте innerText для текста
+    const cellName = document.getElementById('turnName').innerHTML;
     showPopup(cellName, 'подробно');
 });
 
