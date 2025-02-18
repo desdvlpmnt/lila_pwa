@@ -729,13 +729,17 @@ body.modal-open::before {
     --background-color-dark: #f4f4f4; /* Светлый фон теперь тёмная тема */
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
     --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */ 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0);
     padding: 20px;
     border-radius: 8px;
-    max-width: 400px;
-    z-index: 1000;
+    min-width: 300px; /* Минимальная ширина 300px */
+    max-width: 400px; /* Максимальная ширина 400px */
+    min-height: 350px; /* Минимальная высота 300px */
+    max-height: 500px; /* Максимальная высота 500px (можно убрать, если не нужно) */
+    z-index: 2000;
     transition: top 0.3s ease-in-out;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    overflow: auto; /* Добавляем прокрутку, если содержимое выходит за границы */
 }
 
 .popup-content {
