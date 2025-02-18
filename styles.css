@@ -146,7 +146,7 @@ body {
     display: flex; /* Делает ячейку гибким контейнером */
     flex-direction: column; /* Располагает текст внутри ячейки по вертикали */
     align-items: center; /* Центрирует содержимое по горизонтали */
-    justify-content: center; /* Центрирует содержимое по вертикали */
+    justify-content: flex-start; /* Центрирует содержимое по вертикали */
     text-align: center; /* Центрирует текст */
     padding: 5%; /* Внутренний отступ от границ ячейки */
     font-size: 1vmin; /* Размер шрифта текста внутри ячейки */
@@ -757,9 +757,10 @@ body.modal-open::before {
     font-size: 16px;
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
     --text-color-dark: #2d2d2d; /* Тёмный текст для "тёмной темы" */ 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    margin-top: 10px;
-    line-height: 1.15; /* Интервал между строками 1.15 */
+    /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;*/
+    font-family: 'Inter', sans-serif;
+    margin-top: 12px;
+    line-height: 1.30; /* Интервал между строками 1.15 */
     text-align: justify; /* Выравнивание текста по ширине */
     text-justify: inter-word; /* Улучшенное выравнивание слов */
 }
@@ -767,4 +768,5 @@ body.modal-open::before {
 .popup-text p {
     margin-bottom: 10px; /* Отступ между абзацами */
     text-indent: 20px; /* Отступ первой строки абзаца */
+    margin-top: 10px; /* Отступ сверху */
 }
