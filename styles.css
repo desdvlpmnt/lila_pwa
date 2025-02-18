@@ -471,7 +471,7 @@ body.dark-mode .modal {
     z-index: 1; /* Под контентом модального окна */
 }
 
-Затемнение фона при открытом модальном окне
+/*Затемнение фона при открытом модальном окне*/
 body.modal-open::before {
     content: '';
     position: fixed;
@@ -694,7 +694,6 @@ body.modal-open::before {
     box-sizing: border-box; /* Чтобы padding не увеличивал размеры контейнера */
     visibility: visible; /* Контейнер всегда видимый */
 }
-    
 
 .message-container .message {
     display: block;
