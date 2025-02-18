@@ -352,7 +352,7 @@ function showPopup(cellName, type) {
 
         if (text) {
             // Устанавливаем текст в всплывающее окно
-            document.getElementById('popup-text').textContent = text;
+            document.getElementById('popup-text').innerHTML = text;
 
             // Показываем всплывающее окно и overlay
             document.getElementById('popup').style.display = 'block';
@@ -379,12 +379,12 @@ function closePopup() {
 
 // Обработчики для кнопок
 document.getElementById('shortBtn').addEventListener('click', () => {
-    const cellName = document.getElementById('turnName').textContent;
+    const cellName = document.getElementById('turnName').innerHTML;
     showPopup(cellName, 'коротко');
 });
 
 document.getElementById('detailedBtn').addEventListener('click', () => {
-    const cellName = document.getElementById('turnName').textContent;
+    const cellName = document.getElementById('turnName').innerHTML;
     showPopup(cellName, 'подробно');
 });
 
@@ -400,7 +400,7 @@ loadJsonData().then(data => {
     const text = data[cellName] && data[cellName][type];
     if (text) {
         console.log('Текст найден:', text);
-        document.getElementById('popup-text').textContent = text;
+        document.getElementById('popup-text').innerHTML = text;
         document.getElementById('popup').style.display = 'block';
         document.getElementById('popup-overlay').style.display = 'block';
         setTimeout(() => {
