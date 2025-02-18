@@ -335,6 +335,7 @@ function drawPaths() {
 setTimeout(drawPaths, 500);
 
 // Загрузка данных из JSON
+// Загрузка данных из JSON
 function loadJsonData() {
     return fetch('data.json') // Убедитесь, что файл в той же папке
         .then(response => response.json())
@@ -351,6 +352,9 @@ function showPopup(cellName, type) {
         const text = data[cellName] && data[cellName][type];
 
         if (text) {
+            // Устанавливаем название ячейки в всплывающее окно
+            document.getElementById('popup-turnName').innerText = cellName;
+
             // Устанавливаем текст в всплывающее окно
             document.getElementById('popup-text').innerHTML = text;
 
@@ -379,12 +383,12 @@ function closePopup() {
 
 // Обработчики для кнопок
 document.getElementById('shortBtn').addEventListener('click', () => {
-    const cellName = document.getElementById('turnName').innerHTML;
+    const cellName = document.getElementById('turnName').innerText; // Используйте innerText для текста
     showPopup(cellName, 'коротко');
 });
 
 document.getElementById('detailedBtn').addEventListener('click', () => {
-    const cellName = document.getElementById('turnName').innerHTML;
+    const cellName = document.getElementById('turnName').innerText; // Используйте innerText для текста
     showPopup(cellName, 'подробно');
 });
 
@@ -410,16 +414,3 @@ loadJsonData().then(data => {
         console.error(`Не найден текст для ${cellName} с типом ${type}`);
     }
 });
-
-// Функция для открытия всплывающего окна и обновления названия ячейки
-function openPopup(name) {
-    document.getElementById('popup-turnName').innerText = name; // Обновляем название в попапе
-    document.getElementById('popup').style.display = 'block'; // Показываем всплывающее окно
-    document.getElementById('popup-overlay').style.display = 'block'; // Показываем overlay
-}
-
-// Функция для закрытия всплывающего окна
-function closePopup() {
-    document.getElementById('popup').style.display = 'none'; // Скрываем всплывающее окно
-    document.getElementById('popup-overlay').style.display = 'none'; // Скрываем overlay
-}
