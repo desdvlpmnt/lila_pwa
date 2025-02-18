@@ -727,14 +727,14 @@ body.modal-open::before {
     transform: translateX(-50%);
     background: var(--background-color-light); /* Фон с использованием переменной темы */
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
-    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */ 
+    --text-color-dark: #202020; /* Тёмный текст для "тёмной темы" */ 
     box-shadow: 0 4px 8px rgba(0, 0, 0);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     min-width: 300px; /* Минимальная ширина 300px */
     max-width: 400px; /* Максимальная ширина 400px */
-    min-height: 450px; /* Минимальная высота 300px */
-    max-height: 500px; /* Максимальная высота 500px (можно убрать, если не нужно) */
+    min-height: 550px; /* Минимальная высота 300px */
+    max-height: 600px; /* Максимальная высота 500px (можно убрать, если не нужно) */
     z-index: 2000;
     transition: top 0.3s ease-in-out;
     overflow: auto; /* Добавляем прокрутку, если содержимое выходит за границы */
@@ -756,7 +756,7 @@ body.modal-open::before {
 #popup-text {
     font-size: 16px;
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
-    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */ 
+    --text-color-dark: #2d2d2d; /* Тёмный текст для "тёмной темы" */ 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     margin-top: 10px;
 }
