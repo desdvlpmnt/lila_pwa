@@ -335,13 +335,12 @@ function drawPaths() {
 setTimeout(drawPaths, 500);
 
 // Загрузка данных из JSON
-// Загрузка данных из JSON
 function loadJsonData() {
     return fetch('data.json') // Убедитесь, что файл в той же папке
         .then(response => response.json())
-        .then(data => data)
         .catch((error) => {
             console.error("Ошибка при загрузке JSON:", error);
+            return {}; // Возвращаем пустой объект, чтобы избежать ошибок
         });
 }
 
@@ -349,14 +348,12 @@ function loadJsonData() {
 function showPopup(cellName, type) {
     loadJsonData().then(data => {
         // Проверяем, что данные для ячейки существуют
-        const text = data[cellName] && data[cellName][type];
-
-        if (text) {
-            // Устанавливаем название ячейки в всплывающее окно
+        if (data[cellName] && data[cellName][type]) {
+            // Обновляем название ячейки в попапе
             document.getElementById('popup-turnName').innerText = cellName;
 
             // Устанавливаем текст в всплывающее окно
-            document.getElementById('popup-text').innerHTML = text;
+            document.getElementById('popup-text').innerHTML = data[cellName][type];
 
             // Показываем всплывающее окно и overlay
             document.getElementById('popup').style.display = 'block';
@@ -364,10 +361,10 @@ function showPopup(cellName, type) {
 
             // Анимация появления окна сверху
             setTimeout(() => {
-                document.getElementById('popup').style.top = '10px'; // Окно появляется сверху
-            }, 10);
+                document.getElementById('popup').style.top = '10px';
+            }, 50);
         } else {
-            console.error(`Не найдено текста для ${cellName} с типом ${type}`);
+            console.warn(`Данные для ячейки "${cellName}" не найдены`);
         }
     });
 }
