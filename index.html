@@ -11,7 +11,7 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <div class="game-version">Версия 1.2.20.</div>
+    <div class="game-version">Версия 1.2.21.</div>
     <div class="theme-switcher">
         <label class="toggle">
             <input type="checkbox" id="themeToggle">
@@ -31,6 +31,15 @@
             <div class="board" id="board"></div>
             <div class="player" id="player"></div>
         </div>
+
+        <svg id="game-arrows" class="game-arrows">
+            <line x1="100" y1="150" x2="400" y2="500" stroke="red" stroke-width="5" marker-end="url(#arrowhead)" />
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="red" />
+                </marker>
+            </defs>
+        </svg>       
 
         <!-- Лог ходов -->
         <div class="turn-info">

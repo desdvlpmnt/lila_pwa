@@ -109,8 +109,8 @@ body {
 .board-container {
     border-radius: 20px;
     position: relative;
-    width: 80vmin;
-    height: 80vmin;
+    width: 83vmin;
+    height: 83vmin;
     background: url('background.webp') no-repeat center center;
     background-size: cover;
     border: 2px solid var(--text-color-light);
@@ -127,6 +127,7 @@ body {
     position: absolute; /* Абсолютное позиционирование внутри родительского элемента */
     width: 100%; /* Ширина элемента занимает 100% от родительского контейнера */
     height: 100%; /* Высота элемента занимает 100% от родительского контейнера */
+    border-radius: 20px;
     background: rgba(255, 255, 255, 0.2); /* Полупрозрачный белый фон для сетки */
 }
 
@@ -153,7 +154,7 @@ body {
     font-weight: bold; /* Делает текст жирным */
     color: #fff; /* Цвет текста */
     text-shadow: 1px 1px 2px #000; /* Тень для текста */
-    background: rgba(0, 0, 0, 0.3); /* Полупрозрачный фон */
+    background: rgba(0, 0, 0, 0.0); /* Полупрозрачный фон */
     overflow: hidden; /* Убирает содержимое, выходящее за границы */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
@@ -582,11 +583,11 @@ body.modal-open::before {
     margin: 10px auto; /* Центрирование блока */
     padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 80vmin;
+    width: 77vmin;
     height: 20vmin;
     position: relative;
     justify-content: flex-start;
-    width: 80vw; /* 80% ширины экрана */
+    width: 79vw; /* 80% ширины экрана */
     max-width: 400px; /* Максимальная ширина, чтобы не было слишком большого растяжения */
     font-family: 'Inter', sans-serif;
 }
@@ -664,7 +665,7 @@ body.modal-open::before {
 .turn-btn {
     background-color: #555;
     color: white;
-    width: 120px;
+    width: 100px;
     height: 33px;
     border: none;
     padding: 5px 12px;
