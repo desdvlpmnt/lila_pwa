@@ -746,17 +746,25 @@ body.modal-open::before {
 
 .popup-close {
     position: absolute;
-    top: 10px;  /* Отступ сверху */
+    top: 1px;  /* Отступ сверху */
     right: 10px;  /* Отступ справа */
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
     z-index: 10;  /* Убедитесь, что кнопка закрытия поверх контента */
 }
 
-#popup-text {
+.popup-text {
     font-size: 16px;
     --text-color-light: #fff; /* Светлый текст для "светлой темы" */
     --text-color-dark: #2d2d2d; /* Тёмный текст для "тёмной темы" */ 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     margin-top: 10px;
+    line-height: 1.15; /* Интервал между строками 1.15 */
+    text-align: justify; /* Выравнивание текста по ширине */
+    text-justify: inter-word; /* Улучшенное выравнивание слов */
+}
+
+.popup-text p {
+    margin-bottom: 10px; /* Отступ между абзацами */
+    text-indent: 20px; /* Отступ первой строки абзаца */
 }
