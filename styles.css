@@ -733,11 +733,10 @@ body.modal-open::before {
     border-radius: 8px;
     min-width: 300px; /* Минимальная ширина 300px */
     max-width: 400px; /* Максимальная ширина 400px */
-    min-height: 350px; /* Минимальная высота 300px */
+    min-height: 450px; /* Минимальная высота 300px */
     max-height: 500px; /* Максимальная высота 500px (можно убрать, если не нужно) */
     z-index: 2000;
     transition: top 0.3s ease-in-out;
-
     overflow: auto; /* Добавляем прокрутку, если содержимое выходит за границы */
 }
 
@@ -749,13 +748,14 @@ body.modal-open::before {
     position: absolute;
     top: 5px;
     right: 10px;
-    font-size: 20px;
+    font-size: 50px;
     cursor: pointer;
 }
 
 #popup-text {
     font-size: 16px;
-    color: #000000;
+    --text-color-light: #fff; /* Светлый текст для "светлой темы" */
+    --text-color-dark: #000; /* Тёмный текст для "тёмной темы" */ 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     margin-top: 10px;
 }
