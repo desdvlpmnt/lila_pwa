@@ -109,8 +109,8 @@ body {
 .board-container {
     border-radius: 20px;
     position: relative;
-    width: 83vmin;
-    height: 83vmin;
+    width: 82vmin;
+    height: 82vmin;
     background: url('background.webp') no-repeat center center;
     background-size: cover;
     border: 2px solid var(--text-color-light);
