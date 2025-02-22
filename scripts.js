@@ -351,9 +351,6 @@ function showPopup(cellName, type) {
         const text = data[cellName] && data[cellName][type];
 
         if (text) {
-            // Устанавливаем текст в всплывающее окно
-            document.getElementById('popup-text').innerHTML = text;
-
             // Показываем всплывающее окно и overlay
             document.getElementById('popup').style.display = 'block';
             document.getElementById('popup-overlay').style.display = 'block';
@@ -361,6 +358,8 @@ function showPopup(cellName, type) {
             // Анимация появления окна сверху
             setTimeout(() => {
                 document.getElementById('popup').style.top = '10px'; // Окно появляется сверху
+                // Устанавливаем текст в всплывающее окно
+                document.getElementById('popup-text').innerHTML = text;
             }, 10);
         } else {
             console.error(`Не найдено текста для ${cellName} с типом ${type}`);
