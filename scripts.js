@@ -409,3 +409,23 @@ loadJsonData().then(data => {
         console.error(`Не найден текст для ${cellName} с типом ${type}`);
     }
 });
+
+
+// Найдем кнопку "Домой"
+const homeButton = document.getElementById('homeButton');
+
+// Добавим обработчик нажатия
+homeButton.addEventListener('click', () => {
+    // Перенаправляем на страницу main.html
+    window.location.href = 'main.html';
+});
+
+
+// Найдем элемент по id
+const playButton = document.getElementById('playButton');
+
+// Добавим обработчик клика
+playButton.addEventListener('click', () => {
+    // Переход на index.html
+    window.location.href = 'index.html';
+});
