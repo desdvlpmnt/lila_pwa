@@ -421,11 +421,17 @@ homeButton.addEventListener('click', () => {
 });
 
 
-// Найдем элемент по id
-const playButton = document.getElementById('playButton');
+document.addEventListener('DOMContentLoaded', function () {
+    const playButton = document.getElementById('playButton');
 
-// Добавим обработчик клика
-playButton.addEventListener('click', () => {
-    // Переход на index.html
-    window.location.href = 'index.html';
+    // Проверим, что элемент найден
+    if (playButton) {
+        playButton.addEventListener('click', function () {
+            console.log('Button clicked!');
+            window.location.href = 'index.html'; // Переход на страницу
+        });
+    } else {
+        console.error('Element not found!');
+    }
 });
+
