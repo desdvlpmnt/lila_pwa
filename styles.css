@@ -820,8 +820,8 @@ button {
 
 .main-container {
     position: relative;
-    width: 428px;
-    height: 926px;
+    width: 100vmin;
+    height: 200vmin;
     margin: 0 auto;
     background: #f8f8f8;
     overflow: hidden;
@@ -834,9 +834,10 @@ button {
     justify-content: space-between;
     flex-wrap: nowrap;
     position: relative;
-    width: 369px;
+    width: 330px;
     margin: 40px 0 0 24px;
     z-index: 56;
+    flex-direction: row;
 }
 .pic {
     flex-shrink: 0;
@@ -855,7 +856,7 @@ button {
     position: relative;
     height: 19px;
     color: #000000;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 20px;
     font-weight: 700;
     line-height: 19px;
@@ -872,7 +873,7 @@ button {
     gap: 10px;
     position: relative;
     width: 379px;
-    margin: 51px 0 0 24px;
+    margin: 15px 0 0 10px;
 }
 .img {
     flex-shrink: 0;
@@ -902,7 +903,7 @@ button {
     height: 18px;
     margin: 0 0 0 69px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 16px;
     font-weight: 600;
     line-height: 18px;
@@ -919,7 +920,7 @@ button {
     height: 15px;
     margin: 6px 0 0 0;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -943,7 +944,7 @@ button {
     top: 0;
     left: 0;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1006,7 +1007,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1020,7 +1021,7 @@ button {
     position: relative;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1077,7 +1078,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1091,7 +1092,7 @@ button {
     position: relative;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1148,7 +1149,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1162,7 +1163,7 @@ button {
     position: relative;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1197,7 +1198,7 @@ button {
     top: 0;
     left: 0;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1259,7 +1260,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1277,7 +1278,7 @@ button {
     width: 243px;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1334,7 +1335,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1348,7 +1349,7 @@ button {
     position: relative;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1383,7 +1384,7 @@ button {
     top: 0;
     left: 0;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1445,7 +1446,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1459,7 +1460,7 @@ button {
     position: relative;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
@@ -1516,7 +1517,7 @@ button {
     position: relative;
     height: 18px;
     color: #181d27;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 14px;
     font-weight: 600;
     line-height: 17.57px;
@@ -1530,7 +1531,7 @@ button {
     position: relative;
     height: 15px;
     color: #ababab;
-    font-family: Mulish, var(--default-font-family);
+    font-family: 'Open Sans', sans-serif; ;
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
