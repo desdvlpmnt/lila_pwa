@@ -826,7 +826,7 @@ button {
     background: #f8f8f8;
     overflow: hidden;
     border-radius: 0px;
-    box-shadow: 0 20px 104px 0 rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 20px 104px 0 rgba(0, 0, 0, 0.1);*/
 }
 .group {
     display: flex;
