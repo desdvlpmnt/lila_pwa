@@ -53,6 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Принудительно обновляем цвета, чтобы футер и фон были корректными
     updateThemeStyles(savedTheme);
+    //  Добавьте этот код:
+    const playButton = document.getElementById('playButton');
+
+    if (playButton) {
+        playButton.addEventListener('click', function() {
+            console.log('Кнопка "Играть" нажата!'); // Для отладки
+            window.location.href = 'index.html';
+        });
+    } else {
+        console.error('Элемент с id="playButton" не найден!');
+    }
 });
 
 
@@ -418,20 +429,5 @@ const homeButton = document.getElementById('homeButton');
 homeButton.addEventListener('click', () => {
     // Перенаправляем на страницу main.html
     window.location.href = 'main.html';
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const playButton = document.getElementById('playButton');
-
-    // Проверим, что элемент найден
-    if (playButton) {
-        playButton.addEventListener('click', function () {
-            console.log('Button clicked!');
-            window.location.href = 'index.html'; // Переход на страницу
-        });
-    } else {
-        console.error('Element not found!');
-    }
 });
 

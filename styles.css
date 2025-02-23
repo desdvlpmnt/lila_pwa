@@ -819,13 +819,13 @@ button {
 }
 
 .main-container {
-    position: relative;
-    width: 100vmin;
-    height: 200vmin;
+    position: fixed;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     background: #f8f8f8;
     overflow: hidden;
-    border-radius: 50px;
+    border-radius: 0px;
     box-shadow: 0 20px 104px 0 rgba(0, 0, 0, 0.1);
 }
 .group {
@@ -1551,7 +1551,7 @@ button {
     overflow: hidden;
 }
 
-.playButton {
+#playButton {
     position: relative;
     z-index: 10; /* Обеспечивает, что элемент будет поверх других */
 }
